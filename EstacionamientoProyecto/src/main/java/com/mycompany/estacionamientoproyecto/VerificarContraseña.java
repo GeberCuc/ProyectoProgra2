@@ -40,7 +40,7 @@ public class VerificarContraseña {
    
    
    
-   private final  JPanel PanelFunciones;
+   private final  JPanel PanelIngresarDatos;
    private final JPanel PanelLogin;
    private final JTextField UsuarioIngresado;
    private final JPasswordField ContraIngresada;
@@ -48,13 +48,14 @@ public class VerificarContraseña {
    private final JLabel TxtEspera; 
    private final JProgressBar BarraTiempo;
    private final ButtonGroup ButtGrupoLogin;
+   private final JPanel JpanelAñadirUsuario;
    
-   public VerificarContraseña(String usuario, char[]contraseña, JPanel PanelFunciones,JPanel PanelLogin,JTextField UsuarioIngresado,JPasswordField ContraIngresada,JButton IniciarSesion,JLabel TxtEspera,JProgressBar BarraTiempo,ButtonGroup ButtGrupoLogin){
+   public VerificarContraseña(String usuario, char[]contraseña, JPanel PanelIngresarDatos,JPanel PanelLogin,JTextField UsuarioIngresado,JPasswordField ContraIngresada,JButton IniciarSesion,JLabel TxtEspera,JProgressBar BarraTiempo,ButtonGroup ButtGrupoLogin,JPanel JpanelAñadirUsuario){
        
        
        this.usuario=usuario;
        this.contraseña=contraseña;
-       this.PanelFunciones=PanelFunciones;
+       this.PanelIngresarDatos=PanelIngresarDatos;
        this.PanelLogin=PanelLogin;
         this.UsuarioIngresado=UsuarioIngresado;
         this.ContraIngresada= ContraIngresada;
@@ -62,6 +63,7 @@ public class VerificarContraseña {
         this.TxtEspera=TxtEspera;
         this.BarraTiempo=BarraTiempo;
          this.ButtGrupoLogin=ButtGrupoLogin;
+         this.JpanelAñadirUsuario=JpanelAñadirUsuario;
    }
    
     
@@ -83,8 +85,8 @@ public class VerificarContraseña {
           JOptionPane.showMessageDialog(null,"Bienvenido");
           Arrays.fill(contraseña, '°');
           PanelLogin.setVisible(false);
-          PanelFunciones.setVisible(true);
-          
+          PanelIngresarDatos.setVisible(true);
+          JpanelAñadirUsuario.setVisible(false);
       }
         
       if(!pasas){

@@ -25,6 +25,7 @@ public class visualizarContenido extends javax.swing.JFrame {
         initComponents();
     PanelLogin.setVisible(true);
     PanelFunciones.setVisible(false);
+    JpanelAñadirUsuario.setVisible(false);
     PanelIngresarDatos.setVisible(false);
           TxtEspera.setVisible(false);
           BarraTiempo.setVisible(false);
@@ -35,7 +36,6 @@ public class visualizarContenido extends javax.swing.JFrame {
           setLocationRelativeTo(null);
           // --- CENTRAR PANEL ---
 centrarPanel(PanelLogin);
-centrarPanel(PanelFunciones);
 centrarPanel(PanelIngresarDatos);
 
 // Recentrar al redimensionar la ventana
@@ -83,6 +83,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         ButtGrupoLogin = new javax.swing.ButtonGroup();
         ButtonGroupIngresar = new javax.swing.ButtonGroup();
         ButGroupFunciones = new javax.swing.ButtonGroup();
+        FormatoTiempo = new javax.swing.ButtonGroup();
         PanelLogin = new javax.swing.JPanel();
         bienvenida = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -103,22 +104,23 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         ButModificar = new javax.swing.JToggleButton();
         ButFinancias = new javax.swing.JToggleButton();
         PanelIngresarDatos = new javax.swing.JPanel();
-        TxtNombre = new javax.swing.JLabel();
-        IngresarNombre = new javax.swing.JTextField();
         NoPlaca = new javax.swing.JLabel();
         ingresaPlaca = new javax.swing.JTextField();
-        ModeloCarro = new javax.swing.JLabel();
-        IngresarModelo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        ButAuto = new javax.swing.JRadioButton();
+        ButFlat = new javax.swing.JRadioButton();
+        ButVariable = new javax.swing.JRadioButton();
+        BuscarDbPlaca = new javax.swing.JButton();
+        aviso = new javax.swing.JLabel();
+        JpanelAñadirUsuario = new javax.swing.JPanel();
+        NombreIngresar = new javax.swing.JLabel();
+        CarnetIngresar = new javax.swing.JLabel();
+        PlacaIngresar = new javax.swing.JLabel();
+        IngresarNombre = new javax.swing.JTextField();
+        IngresarCarnet = new javax.swing.JTextField();
+        IngresarPlaca = new javax.swing.JTextField();
         ButMoto = new javax.swing.JRadioButton();
-        PanelBuscar = new javax.swing.JPanel();
-        TxtBuscar = new javax.swing.JLabel();
-        BuscarXPlaca = new javax.swing.JLabel();
-        BuscarPlaca = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TablaClientes = new javax.swing.JTable();
+        ButAuto = new javax.swing.JRadioButton();
+        AgregarNuevoUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -273,23 +275,80 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
 
         PanelIngresarDatos.setAutoscrolls(true);
 
-        TxtNombre.setText("Nombre:");
-
         NoPlaca.setText("Placa:");
 
-        ModeloCarro.setText("Modelo:");
+        jLabel1.setText("Tiempo:");
 
-        jLabel1.setText("Tiempo");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 hora", "2 horas", "3 horas", "4 horas", "5 horas", "6 horas", "7 horas", "8 horas", "9 horas", "10 horas", "11 horas", "12 horas" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        FormatoTiempo.add(ButFlat);
+        ButFlat.setText("Plano");
+        ButFlat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                ButFlatActionPerformed(evt);
             }
         });
 
-        ButtonGroupIngresar.add(ButAuto);
-        ButAuto.setText("Automovil");
+        FormatoTiempo.add(ButVariable);
+        ButVariable.setText("Variable");
+
+        BuscarDbPlaca.setText("Verificar");
+        BuscarDbPlaca.setActionCommand("");
+        BuscarDbPlaca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarDbPlacaActionPerformed(evt);
+            }
+        });
+
+        aviso.setText(" ");
+
+        javax.swing.GroupLayout PanelIngresarDatosLayout = new javax.swing.GroupLayout(PanelIngresarDatos);
+        PanelIngresarDatos.setLayout(PanelIngresarDatosLayout);
+        PanelIngresarDatosLayout.setHorizontalGroup(
+            PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                .addGap(222, 222, 222)
+                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ButFlat, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ButVariable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(302, Short.MAX_VALUE))
+                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                        .addComponent(NoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ingresaPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BuscarDbPlaca)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                .addGap(282, 282, 282)
+                .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        PanelIngresarDatosLayout.setVerticalGroup(
+            PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ingresaPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BuscarDbPlaca))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButFlat)
+                    .addComponent(ButVariable))
+                .addGap(396, 396, 396))
+        );
+
+        NombreIngresar.setText("Nombre:");
+
+        CarnetIngresar.setText("Carnet:");
+
+        PlacaIngresar.setText("Placa:");
 
         ButtonGroupIngresar.add(ButMoto);
         ButMoto.setText("Motocicleta");
@@ -299,148 +358,107 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
             }
         });
 
-        javax.swing.GroupLayout PanelIngresarDatosLayout = new javax.swing.GroupLayout(PanelIngresarDatos);
-        PanelIngresarDatos.setLayout(PanelIngresarDatosLayout);
-        PanelIngresarDatosLayout.setHorizontalGroup(
-            PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ModeloCarro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(NoPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TxtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(IngresarNombre)
-                    .addComponent(ingresaPlaca)
-                    .addComponent(IngresarModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
-                        .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
-                                .addComponent(ButAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(ButMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 37, Short.MAX_VALUE)))
-                .addContainerGap(568, Short.MAX_VALUE))
-        );
-        PanelIngresarDatosLayout.setVerticalGroup(
-            PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
-                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(IngresarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(TxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ingresaPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ModeloCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(IngresarModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ButAuto)
-                    .addComponent(ButMoto))
-                .addContainerGap(275, Short.MAX_VALUE))
-        );
+        ButtonGroupIngresar.add(ButAuto);
+        ButAuto.setText("Automovil");
 
-        TxtBuscar.setText("Buscar ");
-
-        BuscarXPlaca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        BuscarXPlaca.setText("Ingrese Placa");
-
-        BuscarPlaca.setToolTipText("");
-
-        TablaClientes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Nombre", "Placa", "Modelo", "Tiempo", "Tipo de  vehiculo"
+        AgregarNuevoUsuario.setText("Guardar");
+        AgregarNuevoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarNuevoUsuarioActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(TablaClientes);
+        });
 
-        javax.swing.GroupLayout PanelBuscarLayout = new javax.swing.GroupLayout(PanelBuscar);
-        PanelBuscar.setLayout(PanelBuscarLayout);
-        PanelBuscarLayout.setHorizontalGroup(
-            PanelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelBuscarLayout.createSequentialGroup()
-                .addGroup(PanelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelBuscarLayout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(TxtBuscar))
-                    .addGroup(PanelBuscarLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(BuscarXPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout JpanelAñadirUsuarioLayout = new javax.swing.GroupLayout(JpanelAñadirUsuario);
+        JpanelAñadirUsuario.setLayout(JpanelAñadirUsuarioLayout);
+        JpanelAñadirUsuarioLayout.setHorizontalGroup(
+            JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
+                        .addComponent(ButAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BuscarPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PanelBuscarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(ButMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
+                        .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NombreIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CarnetIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PlacaIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(IngresarNombre)
+                            .addComponent(IngresarCarnet)
+                            .addComponent(IngresarPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)))
+                    .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
+                        .addComponent(AgregarNuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
-        PanelBuscarLayout.setVerticalGroup(
-            PanelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelBuscarLayout.createSequentialGroup()
-                .addComponent(TxtBuscar)
-                .addGap(18, 18, 18)
-                .addGroup(PanelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BuscarXPlaca)
-                    .addComponent(BuscarPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        JpanelAñadirUsuarioLayout.setVerticalGroup(
+            JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NombreIngresar)
+                    .addComponent(IngresarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CarnetIngresar)
+                    .addComponent(IngresarCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PlacaIngresar)
+                    .addComponent(IngresarPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButMoto)
+                    .addComponent(ButAuto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(AgregarNuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout PanelFuncionesLayout = new javax.swing.GroupLayout(PanelFunciones);
         PanelFunciones.setLayout(PanelFuncionesLayout);
         PanelFuncionesLayout.setHorizontalGroup(
             PanelFuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelFuncionesLayout.createSequentialGroup()
+                .addGap(0, 113, Short.MAX_VALUE)
+                .addComponent(ButIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ButDisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ButEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ButModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ButFinancias, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(131, 131, 131))
             .addGroup(PanelFuncionesLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
                 .addGroup(PanelFuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PanelIngresarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(PanelFuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(PanelBuscar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelFuncionesLayout.createSequentialGroup()
-                            .addComponent(ButIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(36, 36, 36)
-                            .addComponent(ButDisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(40, 40, 40)
-                            .addComponent(ButEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(34, 34, 34)
-                            .addComponent(ButModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(49, 49, 49)
-                            .addComponent(ButFinancias, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(52, Short.MAX_VALUE))
+                    .addGroup(PanelFuncionesLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(PanelIngresarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelFuncionesLayout.createSequentialGroup()
+                        .addGap(203, 203, 203)
+                        .addComponent(JpanelAñadirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelFuncionesLayout.setVerticalGroup(
             PanelFuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelFuncionesLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(62, 62, 62)
                 .addGroup(PanelFuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ButIngresar)
-                    .addComponent(ButDisponibilidad)
-                    .addComponent(ButEliminar)
+                    .addComponent(ButFinancias)
                     .addComponent(ButModificar)
-                    .addComponent(ButFinancias))
-                .addGap(52, 52, 52)
-                .addComponent(PanelBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                .addComponent(PanelIngresarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(ButEliminar)
+                    .addComponent(ButDisponibilidad)
+                    .addComponent(ButIngresar))
+                .addGap(44, 44, 44)
+                .addComponent(PanelIngresarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(JpanelAñadirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -453,18 +471,18 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                         .addGap(49, 49, 49)
                         .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
+                        .addGap(64, 64, 64)
                         .addComponent(PanelFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(702, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 333, Short.MAX_VALUE)
                 .addComponent(PanelFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(376, 376, 376))
         );
 
         pack();
@@ -476,16 +494,11 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
 
     private void IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSesionActionPerformed
 
-       
-
-        
-        
-        
         
         String Usuario=UsuarioIngresado.getText();
         char[] contraseña=ContraIngresada.getPassword();
        
-        VerificarContraseña VC=new VerificarContraseña(Usuario,contraseña,PanelFunciones, PanelLogin, UsuarioIngresado, ContraIngresada, IniciarSesion, TxtEspera, BarraTiempo,ButtGrupoLogin);
+        VerificarContraseña VC=new VerificarContraseña(Usuario,contraseña,PanelFunciones, PanelLogin, UsuarioIngresado, ContraIngresada, IniciarSesion, TxtEspera, BarraTiempo,ButtGrupoLogin,JpanelAñadirUsuario);
        
       
         VC.verificar();
@@ -502,10 +515,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
             
             System.exit(0);
         }
-            
-            
-            
-            
+                   
             
         });
         
@@ -520,7 +530,6 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         
            if( ButModificar.isSelected()){
                PanelIngresarDatos.setVisible(true);
-               PanelBuscar.setVisible(false);
                
            }
         
@@ -531,19 +540,10 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         // TODO add your handling code here:
     }//GEN-LAST:event_ButDisponibilidadActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
     private void ButIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButIngresarActionPerformed
         
         
-        ButIngresar.addActionListener((ActionEvent s)->{
-        
-        PanelBuscar.setVisible(ButIngresar.isSelected());
-        
-        });
-        
+       
         
         
         
@@ -554,6 +554,73 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
     private void ButMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButMotoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ButMotoActionPerformed
+
+    private void AgregarNuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarNuevoUsuarioActionPerformed
+     
+        //obteniendo datos
+       String Nombre=IngresarNombre.getText();
+       int Carnet=Integer.parseInt(IngresarCarnet.getText());
+       String Placa=IngresarPlaca.getText(); 
+      String Vehiculo="";
+       if(ButAuto.isSelected()){
+          
+          Vehiculo="Automovil";
+      } else{
+           Vehiculo="Moto";
+           
+       }
+               
+               
+         //accion al seleccionar guradar
+           
+         Usuario us=new Usuario(Nombre,Carnet,Placa,Vehiculo);  
+           
+        UsuarioDB agg= new UsuarioDB();
+        
+        agg.AgregarDb(us);
+        
+        
+        
+  
+        
+        ingresaPlaca.setText(us.getPlaca());
+        IngresarNombre.setText("");
+        IngresarCarnet.setText("");
+        IngresarPlaca.setText("");
+
+
+
+
+    }//GEN-LAST:event_AgregarNuevoUsuarioActionPerformed
+
+    private void ButFlatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButFlatActionPerformed
+     
+    }//GEN-LAST:event_ButFlatActionPerformed
+
+    private void BuscarDbPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarDbPlacaActionPerformed
+        
+        
+        
+         UsuarioDB us= new UsuarioDB();
+         
+         Usuario Encontrado=us.BuscarPorPlaca(ingresaPlaca.getText());
+         
+         if(Encontrado!=null){
+             
+             aviso.setText("Usuario encontrado Prosiga");
+             
+  
+         }else{
+             
+            JpanelAñadirUsuario.setVisible(true);
+            PanelIngresarDatos.setVisible(false);
+             JOptionPane.showMessageDialog(null,"Usuario no Hallado","INGRESE USUARIO",JOptionPane.INFORMATION_MESSAGE);
+         }
+         
+         
+         
+         
+    }//GEN-LAST:event_BuscarDbPlacaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -587,44 +654,46 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AgregarNuevoUsuario;
     private javax.swing.JProgressBar BarraTiempo;
-    private javax.swing.JTextField BuscarPlaca;
-    private javax.swing.JLabel BuscarXPlaca;
+    private javax.swing.JButton BuscarDbPlaca;
     private javax.swing.JRadioButton ButAuto;
     private javax.swing.JToggleButton ButDisponibilidad;
     private javax.swing.JToggleButton ButEliminar;
     private javax.swing.JToggleButton ButFinancias;
+    private javax.swing.JRadioButton ButFlat;
     private javax.swing.ButtonGroup ButGroupFunciones;
     private javax.swing.JToggleButton ButIngresar;
     private javax.swing.JToggleButton ButModificar;
     private javax.swing.JRadioButton ButMoto;
+    private javax.swing.JRadioButton ButVariable;
     private javax.swing.ButtonGroup ButtGrupoLogin;
     private javax.swing.ButtonGroup ButtonGroupIngresar;
+    private javax.swing.JLabel CarnetIngresar;
     private javax.swing.JPasswordField ContraIngresada;
-    private javax.swing.JTextField IngresarModelo;
+    private javax.swing.ButtonGroup FormatoTiempo;
+    private javax.swing.JTextField IngresarCarnet;
     private javax.swing.JTextField IngresarNombre;
+    private javax.swing.JTextField IngresarPlaca;
     private javax.swing.JButton IniciarSesion;
+    private javax.swing.JPanel JpanelAñadirUsuario;
     private javax.swing.JLabel LoginUsuario;
-    private javax.swing.JLabel ModeloCarro;
     private javax.swing.JLabel NoPlaca;
-    private javax.swing.JPanel PanelBuscar;
+    private javax.swing.JLabel NombreIngresar;
     private javax.swing.JPanel PanelFunciones;
     private javax.swing.JPanel PanelIngresarDatos;
     private javax.swing.JPanel PanelLogin;
+    private javax.swing.JLabel PlacaIngresar;
     private javax.swing.JRadioButton SelecAdmin;
     private javax.swing.JRadioButton SelectEmpleado;
-    private javax.swing.JTable TablaClientes;
-    private javax.swing.JLabel TxtBuscar;
     private javax.swing.JLabel TxtEspera;
-    private javax.swing.JLabel TxtNombre;
     private javax.swing.JTextField UsuarioIngresado;
+    private javax.swing.JLabel aviso;
     private javax.swing.JLabel bienvenida;
     private javax.swing.JButton butSalir;
     private javax.swing.JTextField ingresaPlaca;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel loginContra;
     // End of variables declaration//GEN-END:variables
 }
