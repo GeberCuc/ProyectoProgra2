@@ -23,13 +23,16 @@ public class visualizarContenido extends javax.swing.JFrame {
      */
     public visualizarContenido() {
         initComponents();
+        
+        //ocultar
     PanelLogin.setVisible(true);
     PanelFunciones.setVisible(false);
     JpanelAñadirUsuario.setVisible(false);
     PanelIngresarDatos.setVisible(false);
-          TxtEspera.setVisible(false);
-          BarraTiempo.setVisible(false);
-          
+    TxtEspera.setVisible(false);
+    BarraTiempo.setVisible(false);
+        TxtTiempoI.setVisible(false);
+            TiempoVariable.setVisible(false);
          setSize(850,630);
          setResizable(false);
          
@@ -84,6 +87,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         ButtonGroupIngresar = new javax.swing.ButtonGroup();
         ButGroupFunciones = new javax.swing.ButtonGroup();
         FormatoTiempo = new javax.swing.ButtonGroup();
+        grupoTipoAutoingresado = new javax.swing.ButtonGroup();
         PanelLogin = new javax.swing.JPanel();
         bienvenida = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -111,6 +115,11 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         ButVariable = new javax.swing.JRadioButton();
         BuscarDbPlaca = new javax.swing.JButton();
         aviso = new javax.swing.JLabel();
+        TxtTiempoI = new javax.swing.JLabel();
+        TiempoVariable = new javax.swing.JTextField();
+        generarImpresion = new javax.swing.JButton();
+        autoautoingresado = new javax.swing.JRadioButton();
+        motoautoingresado = new javax.swing.JRadioButton();
         JpanelAñadirUsuario = new javax.swing.JPanel();
         NombreIngresar = new javax.swing.JLabel();
         CarnetIngresar = new javax.swing.JLabel();
@@ -277,7 +286,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
 
         NoPlaca.setText("Placa:");
 
-        jLabel1.setText("Tiempo:");
+        jLabel1.setText("Tipo");
 
         FormatoTiempo.add(ButFlat);
         ButFlat.setText("Plano");
@@ -289,6 +298,11 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
 
         FormatoTiempo.add(ButVariable);
         ButVariable.setText("Variable");
+        ButVariable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButVariableActionPerformed(evt);
+            }
+        });
 
         BuscarDbPlaca.setText("Verificar");
         BuscarDbPlaca.setActionCommand("");
@@ -300,48 +314,95 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
 
         aviso.setText(" ");
 
+        TxtTiempoI.setText("Tiempo");
+
+        TiempoVariable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TiempoVariableActionPerformed(evt);
+            }
+        });
+
+        generarImpresion.setText("Ticket");
+
+        grupoTipoAutoingresado.add(autoautoingresado);
+        autoautoingresado.setText("auto");
+        autoautoingresado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoautoingresadoActionPerformed(evt);
+            }
+        });
+
+        grupoTipoAutoingresado.add(motoautoingresado);
+        motoautoingresado.setText("moto");
+        motoautoingresado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                motoautoingresadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelIngresarDatosLayout = new javax.swing.GroupLayout(PanelIngresarDatos);
         PanelIngresarDatos.setLayout(PanelIngresarDatosLayout);
         PanelIngresarDatosLayout.setHorizontalGroup(
             PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
-                .addGap(222, 222, 222)
-                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ButFlat, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ButVariable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(302, Short.MAX_VALUE))
-                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
-                        .addComponent(NoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(ingresaPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BuscarDbPlaca)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
                 .addGap(282, 282, 282)
                 .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                .addGap(222, 222, 222)
+                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtTiempoI, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NoPlaca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                        .addComponent(ingresaPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(BuscarDbPlaca))
+                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                        .addComponent(ButFlat, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ButVariable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                        .addComponent(autoautoingresado, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(motoautoingresado, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                        .addComponent(TiempoVariable, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addComponent(generarImpresion)))
+                .addGap(0, 341, Short.MAX_VALUE))
         );
         PanelIngresarDatosLayout.setVerticalGroup(
             PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
                 .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ingresaPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(NoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ingresaPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BuscarDbPlaca))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(autoautoingresado)
+                    .addComponent(motoautoingresado))
+                .addGap(19, 19, 19)
                 .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ButFlat)
                     .addComponent(ButVariable))
-                .addGap(396, 396, 396))
+                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TiempoVariable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtTiempoI)))
+                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(generarImpresion)))
+                .addGap(323, 323, 323))
         );
 
         NombreIngresar.setText("Nombre:");
@@ -423,7 +484,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         PanelFuncionesLayout.setHorizontalGroup(
             PanelFuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelFuncionesLayout.createSequentialGroup()
-                .addGap(0, 113, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(ButIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ButDisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -440,7 +501,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                         .addGap(41, 41, 41)
                         .addComponent(PanelIngresarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelFuncionesLayout.createSequentialGroup()
-                        .addGap(203, 203, 203)
+                        .addGap(175, 175, 175)
                         .addComponent(JpanelAñadirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -455,10 +516,10 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                     .addComponent(ButDisponibilidad)
                     .addComponent(ButIngresar))
                 .addGap(44, 44, 44)
-                .addComponent(PanelIngresarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(PanelIngresarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JpanelAñadirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -473,14 +534,14 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addComponent(PanelFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(702, Short.MAX_VALUE))
+                .addContainerGap(638, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 333, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 296, Short.MAX_VALUE)
                 .addComponent(PanelFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(376, 376, 376))
         );
@@ -594,7 +655,12 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
     }//GEN-LAST:event_AgregarNuevoUsuarioActionPerformed
 
     private void ButFlatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButFlatActionPerformed
-     
+
+        
+        
+        
+        
+        
     }//GEN-LAST:event_ButFlatActionPerformed
 
     private void BuscarDbPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarDbPlacaActionPerformed
@@ -608,8 +674,6 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
          if(Encontrado!=null){
              
              aviso.setText("Usuario encontrado Prosiga");
-             
-  
          }else{
              
             JpanelAñadirUsuario.setVisible(true);
@@ -618,9 +682,48 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
          }
          
          
+         String Tipo=Encontrado.getVehiculo();
+        if(Tipo.equalsIgnoreCase("automovil")){
+            
+           autoautoingresado.setSelected(true);
+            
+        }else if(Tipo.equalsIgnoreCase("moto")){
+            
+            motoautoingresado.setSelected(true);
+        }
+         
+         
+      
+         
+         
          
          
     }//GEN-LAST:event_BuscarDbPlacaActionPerformed
+
+    private void ButVariableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButVariableActionPerformed
+       
+        if(ButVariable.isSelected()){
+            TxtTiempoI.setVisible(true);
+            TiempoVariable.setVisible(true);
+     
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_ButVariableActionPerformed
+
+    private void TiempoVariableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TiempoVariableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TiempoVariableActionPerformed
+
+    private void autoautoingresadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoautoingresadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_autoautoingresadoActionPerformed
+
+    private void motoautoingresadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motoautoingresadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_motoautoingresadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -686,14 +789,20 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
     private javax.swing.JLabel PlacaIngresar;
     private javax.swing.JRadioButton SelecAdmin;
     private javax.swing.JRadioButton SelectEmpleado;
+    private javax.swing.JTextField TiempoVariable;
     private javax.swing.JLabel TxtEspera;
+    private javax.swing.JLabel TxtTiempoI;
     private javax.swing.JTextField UsuarioIngresado;
+    private javax.swing.JRadioButton autoautoingresado;
     private javax.swing.JLabel aviso;
     private javax.swing.JLabel bienvenida;
     private javax.swing.JButton butSalir;
+    private javax.swing.JButton generarImpresion;
+    private javax.swing.ButtonGroup grupoTipoAutoingresado;
     private javax.swing.JTextField ingresaPlaca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel loginContra;
+    private javax.swing.JRadioButton motoautoingresado;
     // End of variables declaration//GEN-END:variables
 }
