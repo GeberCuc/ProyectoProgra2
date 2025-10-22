@@ -21,36 +21,29 @@ public class Usuario {
         this.Carnet = Carnet;
     }
 
-    public String getPlaca() {
-        return Placa;
+    public int getUsuarioID() {
+        return UsuarioID;
     }
 
-    public void setPlaca(String Placa) {
-        this.Placa = Placa;
+    public void setUsuarioID(int UsuarioID) {
+        this.UsuarioID = UsuarioID;
     }
 
-    public String getVehiculo() {
-        return Vehiculo;
-    }
-
-    public void setVehiculo(String Vehiculo) {
-        this.Vehiculo = Vehiculo;
-    }
-    
+   
+  private int UsuarioID;
   private String Nombre;
   private int Carnet;
-  private String Placa;
-  private String Vehiculo;
+  private Vehiculo vehiculoUs;
  
     
   
 
-   public Usuario(String nombre,int carnet, String placa,String Vehiculo){
+   public Usuario(int UsuarioID,String nombre,int carnet, Vehiculo vehiculoUs){
        
        this.Nombre=nombre;
        this.Carnet=carnet;
-       this.Placa=placa;  
-       this.Vehiculo=Vehiculo;
+       this.UsuarioID=UsuarioID;
+       this.vehiculoUs=vehiculoUs;
    }
    
    
@@ -59,7 +52,12 @@ public class Usuario {
  
    public String toString(){
          
-       return "Usuario:" +"nombre='" + Nombre + '\'' +", carnet=" + Carnet +", placa='" + Placa + '\'' +", vehiculo='" + Vehiculo;
+       return  "Usuario { " +
+                "ID=" + UsuarioID +
+                ", nombre='" + Nombre + '\'' +
+                ", carnet=" + Carnet +
+                (vehiculoUs != null ? ", vehiculo=" + vehiculoUs.getPlaca() : "") +
+                " }";
    }
 }
  

@@ -13,7 +13,9 @@ com\mycompany\estacionamientoproyecto\VerificarContraseña.class
 com\mycompany\estacionamientoproyecto\EstacionamientoProyecto.class
 com\mycompany\estacionamientoproyecto\CSV.class
 com\mycompany\estacionamientoproyecto\visualizarContenido$7.class
+com\mycompany\estacionamientoproyecto\Vehiculo.class
 com\mycompany\estacionamientoproyecto\visualizarContenido$5.class
+com\mycompany\estacionamientoproyecto\visualizarContenido$16.class
 com\mycompany\estacionamientoproyecto\visualizarContenido$11.class
 com\mycompany\estacionamientoproyecto\Usuario.class
 com\mycompany\estacionamientoproyecto\visualizarContenido$8.class

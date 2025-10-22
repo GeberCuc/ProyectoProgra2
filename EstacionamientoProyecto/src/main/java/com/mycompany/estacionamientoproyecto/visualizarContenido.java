@@ -6,6 +6,7 @@ package com.mycompany.estacionamientoproyecto;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -130,6 +131,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         ButMoto = new javax.swing.JRadioButton();
         ButAuto = new javax.swing.JRadioButton();
         AgregarNuevoUsuario = new javax.swing.JButton();
+        Puesto = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -323,6 +325,11 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         });
 
         generarImpresion.setText("Ticket");
+        generarImpresion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generarImpresionActionPerformed(evt);
+            }
+        });
 
         grupoTipoAutoingresado.add(autoautoingresado);
         autoautoingresado.setText("auto");
@@ -429,30 +436,36 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
             }
         });
 
+        Puesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESTUDIANTE", "CATEDRATICO" }));
+
         javax.swing.GroupLayout JpanelAñadirUsuarioLayout = new javax.swing.GroupLayout(JpanelAñadirUsuario);
         JpanelAñadirUsuario.setLayout(JpanelAñadirUsuarioLayout);
         JpanelAñadirUsuarioLayout.setHorizontalGroup(
             JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
-                        .addComponent(ButAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ButMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
+                        .addGap(97, 97, 97)
                         .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NombreIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CarnetIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PlacaIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(IngresarNombre)
-                            .addComponent(IngresarCarnet)
-                            .addComponent(IngresarPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)))
+                            .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
+                                .addComponent(ButAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ButMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
+                                .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(NombreIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CarnetIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(PlacaIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(IngresarNombre)
+                                    .addComponent(IngresarCarnet)
+                                    .addComponent(IngresarPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)))))
                     .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
-                        .addComponent(AgregarNuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)))
+                        .addGap(167, 167, 167)
+                        .addComponent(AgregarNuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(110, Short.MAX_VALUE))
         );
         JpanelAñadirUsuarioLayout.setVerticalGroup(
@@ -470,13 +483,14 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                 .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PlacaIngresar)
                     .addComponent(IngresarPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(28, 28, 28)
                 .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButMoto)
-                    .addComponent(ButAuto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                    .addComponent(ButAuto)
+                    .addComponent(Puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(AgregarNuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PanelFuncionesLayout = new javax.swing.GroupLayout(PanelFunciones);
@@ -587,16 +601,14 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
     private void ButModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButModificarActionPerformed
         
         
-        ButModificar.addActionListener((ActionEvent k)->{
+       
         
            if( ButModificar.isSelected()){
                PanelIngresarDatos.setVisible(true);
                
-           }
-        
-    });
-    }//GEN-LAST:event_ButModificarActionPerformed
 
+    }//GEN-LAST:event_ButModificarActionPerformed
+    }
     private void ButDisponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButDisponibilidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ButDisponibilidadActionPerformed
@@ -622,34 +634,71 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
        String Nombre=IngresarNombre.getText();
        int Carnet=Integer.parseInt(IngresarCarnet.getText());
        String Placa=IngresarPlaca.getText(); 
-      String Vehiculo="";
+      String Tipo;
        if(ButAuto.isSelected()){
           
-          Vehiculo="Automovil";
+          Tipo="automovil";
       } else{
-           Vehiculo="Moto";
+           Tipo="moto";
            
        }
-               
-               
-         //accion al seleccionar guradar
+       
+       String area="";
+       
+       if(Puesto.getSelectedItem().equals("CATEDRATICO")){
            
-         Usuario us=new Usuario(Nombre,Carnet,Placa,Vehiculo);  
+           area="CATEDRATICO";
+           
+       }else if(Puesto.getSelectedItem().equals("ESTUDIANTE")){
+           
+           
+           area="ESTUDIANTE";
+       }else{
+           JOptionPane.showMessageDialog(null,"Ingrese un cargo","CAMPO VACIO",JOptionPane.INFORMATION_MESSAGE);
+           
+       }
+       
+         //accion al seleccionar guradar
+         
+         
+         Vehiculo V=new Vehiculo(Placa,Tipo,area);  
+         
+         Usuario us=new Usuario(0,Nombre,Carnet,V);  
            
         UsuarioDB agg= new UsuarioDB();
         
-        agg.AgregarDb(us);
+        agg.AgregarDb(us,V);
         
+   
         
-        
-  
-        
-        ingresaPlaca.setText(us.getPlaca());
+        ingresaPlaca.setText(V.getPlaca());
         IngresarNombre.setText("");
         IngresarCarnet.setText("");
         IngresarPlaca.setText("");
-
-
+          JpanelAñadirUsuario.setVisible(false);
+            PanelIngresarDatos.setVisible(true);
+            
+            Vehiculo Encontrado=agg.BuscarPorPlaca(ingresaPlaca.getText());
+            if(Encontrado!=null){
+             
+             aviso.setText("Usuario encontrado Prosiga");
+              String modelo = Encontrado.getTipo();
+         
+         
+         
+        if(modelo.equalsIgnoreCase("automovil")){
+            
+           autoautoingresado.setSelected(true);
+            
+        }else if(modelo.equalsIgnoreCase("moto")){
+            
+            motoautoingresado.setSelected(true);
+        }}else{
+             
+            JpanelAñadirUsuario.setVisible(true);
+            PanelIngresarDatos.setVisible(false);
+             JOptionPane.showMessageDialog(null,"Usuario no Hallado","INGRESE USUARIO",JOptionPane.INFORMATION_MESSAGE);
+         }
 
 
     }//GEN-LAST:event_AgregarNuevoUsuarioActionPerformed
@@ -669,28 +718,29 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         
          UsuarioDB us= new UsuarioDB();
          
-         Usuario Encontrado=us.BuscarPorPlaca(ingresaPlaca.getText());
+         Vehiculo Encontrado=us.BuscarPorPlaca(ingresaPlaca.getText());
          
          if(Encontrado!=null){
              
              aviso.setText("Usuario encontrado Prosiga");
-         }else{
+              String modelo = Encontrado.getTipo();
+         
+         
+         
+        if(modelo.equalsIgnoreCase("automovil")){
+            
+           autoautoingresado.setSelected(true);
+            
+        }else if(modelo.equalsIgnoreCase("moto")){
+            
+            motoautoingresado.setSelected(true);
+        }}else{
              
             JpanelAñadirUsuario.setVisible(true);
             PanelIngresarDatos.setVisible(false);
              JOptionPane.showMessageDialog(null,"Usuario no Hallado","INGRESE USUARIO",JOptionPane.INFORMATION_MESSAGE);
          }
          
-         
-         String Tipo=Encontrado.getVehiculo();
-        if(Tipo.equalsIgnoreCase("automovil")){
-            
-           autoautoingresado.setSelected(true);
-            
-        }else if(Tipo.equalsIgnoreCase("moto")){
-            
-            motoautoingresado.setSelected(true);
-        }
          
          
       
@@ -724,6 +774,16 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
     private void motoautoingresadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motoautoingresadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_motoautoingresadoActionPerformed
+
+    private void generarImpresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarImpresionActionPerformed
+
+        
+        
+        UsuarioDB us=new UsuarioDB();
+
+        
+     
+    }//GEN-LAST:event_generarImpresionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -787,6 +847,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
     private javax.swing.JPanel PanelIngresarDatos;
     private javax.swing.JPanel PanelLogin;
     private javax.swing.JLabel PlacaIngresar;
+    private javax.swing.JComboBox<String> Puesto;
     private javax.swing.JRadioButton SelecAdmin;
     private javax.swing.JRadioButton SelectEmpleado;
     private javax.swing.JTextField TiempoVariable;

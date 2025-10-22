@@ -17,10 +17,7 @@ public class basededatos {
         
          try{
              Conectado =DriverManager.getConnection(Direccion);
-             JOptionPane.showMessageDialog(null,"Conexion exitosa","Conexion DB",JOptionPane.INFORMATION_MESSAGE);
-             
-             
-             
+           
          }catch(SQLException q){
              
              JOptionPane.showMessageDialog(null,"Error de conexión"+q.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE);
@@ -35,6 +32,17 @@ public class basededatos {
      }    
     
     
+    public static void cerrar(Connection Conectado){
+               
+        
+        if(Conectado!=null){
+            try{
+                Conectado.close();
+                
+            }catch(SQLException f){
+            JOptionPane.showMessageDialog(null, "Error en cerrar la base de datos"+f.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+    }
     
-    
+}
 }
