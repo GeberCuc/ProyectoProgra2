@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 public class basededatos {
     
     
-        private final static String Direccion="jdbc:sqlite:Data/BaseDeDatosEstacionamientoProyecto.db";
+      private final static String Direccion="jdbc:sqlite:Data/BaseDeDatosEstacionamientoProyecto.db";
     
      public static Connection Conectar(){
          

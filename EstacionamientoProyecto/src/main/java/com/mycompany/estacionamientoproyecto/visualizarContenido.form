@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="ButtGrupoLogin">
     </Component>
@@ -11,6 +11,8 @@
     <Component class="javax.swing.ButtonGroup" name="FormatoTiempo">
     </Component>
     <Component class="javax.swing.ButtonGroup" name="grupoTipoAutoingresado">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="ButonGroupOpciones">
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -37,28 +39,26 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                      <Component id="PanelLogin" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                      <Component id="PanelFunciones" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="PanelLogin" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTabbedPane1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="638" max="32767" attributes="0"/>
+              <EmptySpace pref="85" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="PanelLogin" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="296" max="32767" attributes="0"/>
-              <Component id="PanelFunciones" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="376" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jTabbedPane1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="153" max="32767" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -72,17 +72,17 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="362" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="342" max="-2" attributes="0"/>
                           <Component id="bienvenida" min="-2" pref="92" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="301" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="291" max="-2" attributes="0"/>
                           <Component id="SelecAdmin" min="-2" pref="104" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                           <Component id="SelectEmpleado" min="-2" pref="98" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="330" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="320" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" pref="154" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -90,11 +90,11 @@
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="277" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="267" max="-2" attributes="0"/>
                                           <Component id="LoginUsuario" min="-2" pref="55" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="268" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="258" max="-2" attributes="0"/>
                                           <Component id="loginContra" min="-2" pref="87" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -122,7 +122,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="238" max="32767" attributes="0"/>
+                  <EmptySpace pref="200" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -243,422 +243,594 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="PanelFunciones">
+    <Container class="javax.swing.JPanel" name="jPanel1">
 
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="ButIngresar" min="-2" pref="132" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="ButDisponibilidad" min="-2" pref="140" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="ButEliminar" min="-2" pref="125" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="ButModificar" min="-2" pref="94" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="ButFinancias" min="-2" pref="90" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="PanelIngresarDatos" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
-                          <Component id="JpanelAñadirUsuario" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="ButFinancias" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ButModificar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ButEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ButDisponibilidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ButIngresar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                  <Component id="PanelIngresarDatos" min="-2" pref="174" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="JpanelAñadirUsuario" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="147" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
+    </Container>
+    <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Ingresar"/>
+      </AccessibilityProperties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JToggleButton" name="ButIngresar">
-          <Properties>
-            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="ButGroupFunciones"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Ingresar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButIngresarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="ButDisponibilidad">
-          <Properties>
-            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="ButGroupFunciones"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Disponibilidad"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButDisponibilidadActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="ButEliminar">
-          <Properties>
-            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="ButGroupFunciones"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Eliminar"/>
-            <Property name="autoscrolls" type="boolean" value="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="ButModificar">
-          <Properties>
-            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="ButGroupFunciones"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Modificar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButModificarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="ButFinancias">
-          <Properties>
-            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="ButGroupFunciones"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Financias"/>
-          </Properties>
-        </Component>
-        <Container class="javax.swing.JPanel" name="PanelIngresarDatos">
-          <Properties>
-            <Property name="autoscrolls" type="boolean" value="true"/>
-          </Properties>
+        <Container class="javax.swing.JPanel" name="PanelFunciones">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Ingreso">
+                <Property name="tabTitle" type="java.lang.String" value="Ingreso"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="282" max="-2" attributes="0"/>
-                      <Component id="aviso" min="-2" pref="224" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="222" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" alignment="1" min="-2" pref="57" max="-2" attributes="0"/>
-                          <Component id="TxtTiempoI" alignment="1" min="-2" pref="57" max="-2" attributes="0"/>
-                          <Component id="NoPlaca" alignment="1" min="-2" pref="57" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="ingresaPlaca" min="-2" pref="167" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="BuscarDbPlaca" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="ButFlat" min="-2" pref="98" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ButVariable" min="-2" pref="98" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="autoautoingresado" min="-2" pref="98" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="motoautoingresado" min="-2" pref="98" max="-2" attributes="0"/>
+                              <Component id="buttRegresar" min="-2" pref="103" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="PanelIngresarDatos" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="TiempoVariable" min="-2" pref="126" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                              <Component id="generarImpresion" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="207" max="-2" attributes="0"/>
+                              <Component id="JpanelAñadirUsuario" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="341" max="32767" attributes="0"/>
+                      <EmptySpace pref="220" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="aviso" min="-2" pref="16" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="NoPlaca" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="ingresaPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="BuscarDbPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="autoautoingresado" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="motoautoingresado" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                          <Component id="ButFlat" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ButVariable" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="TiempoVariable" min="-2" max="-2" attributes="0"/>
-                                  <Component id="TxtTiempoI" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                              <Component id="PanelIngresarDatos" min="-2" pref="339" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                              <Component id="generarImpresion" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="buttRegresar" min="-2" pref="43" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="323" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="JpanelAñadirUsuario" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="51" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="NoPlaca">
+            <Container class="javax.swing.JPanel" name="PanelIngresarDatos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Placa:"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+                <Property name="autoscrolls" type="boolean" value="true"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="ingresaPlaca">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                                          <Component id="ButFlat" min="-2" pref="98" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="ButVariable" min="-2" pref="98" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="NoPlaca" min="-2" pref="57" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="ingresaPlaca" min="-2" pref="167" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                              <Component id="BuscarDbPlaca" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+                                              <Component id="generarImpresion" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                                          <Component id="BilleteIngresado" min="-2" pref="134" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="Pago" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="TxtTiempoI" min="-2" pref="57" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="TiempoVariable" min="-2" pref="191" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel1" min="-2" pref="37" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="autoautoingresado" min="-2" pref="98" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="motoautoingresado" min="-2" pref="98" max="-2" attributes="0"/>
+                                                  <EmptySpace pref="245" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Component id="aviso" min="-2" pref="224" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="PuestoBuscandoPlaca" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                          <Component id="txtpago" min="-2" pref="165" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="aviso" min="-2" pref="16" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="NoPlaca" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="ingresaPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BuscarDbPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" min="-2" pref="24" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="autoautoingresado" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="motoautoingresado" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="PuestoBuscandoPlaca" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="ButFlat" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ButVariable" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="TxtTiempoI" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TiempoVariable" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtpago" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Pago" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BilleteIngresado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="generarImpresion" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="328" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="NoPlaca">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Placa:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ingresaPlaca">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Tipo"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="ButFlat">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="FormatoTiempo"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Plano"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButFlatActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="ButVariable">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="FormatoTiempo"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Variable"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButVariableActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="BuscarDbPlaca">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Verificar"/>
+                    <Property name="actionCommand" type="java.lang.String" value=""/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BuscarDbPlacaActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="aviso">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value=" "/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="TxtTiempoI">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Tiempo"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TiempoVariable">
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TiempoVariableMouseClicked"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TiempoVariableActionPerformed"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TiempoVariableKeyTyped"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="generarImpresion">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Ticket"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generarImpresionActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="autoautoingresado">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="grupoTipoAutoingresado"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="auto"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="autoautoingresadoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="motoautoingresado">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="grupoTipoAutoingresado"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="moto"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="motoautoingresadoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="Pago">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="2">
+                        <StringItem index="0" value="Efectivo"/>
+                        <StringItem index="1" value="Tarjeta"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PagoActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="txtpago">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value=" Ingrese "/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="BilleteIngresado">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BilleteIngresadoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="PuestoBuscandoPlaca">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="2">
+                        <StringItem index="0" value="ESTUDIANTE"/>
+                        <StringItem index="1" value="CATEDRATICO"/>
+                      </StringArray>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" value=""/>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PuestoBuscandoPlacaActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="JpanelA&#xf1;adirUsuario">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="ButAuto" min="-2" pref="98" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="ButMoto" min="-2" pref="98" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="Puesto" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="NombreIngresar" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                                              <Component id="CarnetIngresar" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                                              <Component id="PlacaIngresar" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="IngresarNombre" max="32767" attributes="0"/>
+                                              <Component id="IngresarCarnet" max="32767" attributes="0"/>
+                                              <Component id="IngresarPlaca" pref="183" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
+                                  <Component id="AgregarNuevoUsuario" min="-2" pref="166" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="90" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="NombreIngresar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="IngresarNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="CarnetIngresar" min="-2" max="-2" attributes="0"/>
+                              <Component id="IngresarCarnet" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="PlacaIngresar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="IngresarPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="ButMoto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ButAuto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Puesto" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="AgregarNuevoUsuario" min="-2" pref="31" max="-2" attributes="0"/>
+                          <EmptySpace pref="15" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="NombreIngresar">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Nombre:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="CarnetIngresar">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Carnet:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="PlacaIngresar">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Placa:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="IngresarNombre">
+                </Component>
+                <Component class="javax.swing.JTextField" name="IngresarCarnet">
+                </Component>
+                <Component class="javax.swing.JTextField" name="IngresarPlaca">
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="ButMoto">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="ButtonGroupIngresar"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Motocicleta"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButMotoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="ButAuto">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="ButtonGroupIngresar"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Automovil"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="AgregarNuevoUsuario">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Guardar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AgregarNuevoUsuarioActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="Puesto">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="2">
+                        <StringItem index="0" value="ESTUDIANTE"/>
+                        <StringItem index="1" value="CATEDRATICO"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PuestoActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="buttRegresar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Tipo"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="ButFlat">
-              <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="FormatoTiempo"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Plano"/>
+                <Property name="text" type="java.lang.String" value="REGRESAR"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButFlatActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="ButVariable">
-              <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="FormatoTiempo"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Variable"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButVariableActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="BuscarDbPlaca">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Verificar"/>
-                <Property name="actionCommand" type="java.lang.String" value=""/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BuscarDbPlacaActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="aviso">
-              <Properties>
-                <Property name="text" type="java.lang.String" value=" "/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="TxtTiempoI">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Tiempo"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="TiempoVariable">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TiempoVariableActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="generarImpresion">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Ticket"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generarImpresionActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="autoautoingresado">
-              <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="grupoTipoAutoingresado"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="auto"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="autoautoingresadoActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="motoautoingresado">
-              <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="grupoTipoAutoingresado"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="moto"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="motoautoingresadoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttRegresarActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="JpanelA&#xf1;adirUsuario">
+        <Container class="javax.swing.JPanel" name="JpaneSalida">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Salida">
+                <Property name="tabTitle" type="java.lang.String" value="Salida"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="ButAuto" min="-2" pref="98" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="ButMoto" min="-2" pref="98" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="Puesto" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="NombreIngresar" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
-                                          <Component id="CarnetIngresar" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                                          <Component id="PlacaIngresar" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="IngresarNombre" max="32767" attributes="0"/>
-                                          <Component id="IngresarCarnet" max="32767" attributes="0"/>
-                                          <Component id="IngresarPlaca" pref="183" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
-                              <Component id="AgregarNuevoUsuario" min="-2" pref="166" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="110" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
+                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="143" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="NombreIngresar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="IngresarNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="CarnetIngresar" min="-2" max="-2" attributes="0"/>
-                          <Component id="IngresarCarnet" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="PlacaIngresar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="IngresarPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="ButMoto" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ButAuto" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Puesto" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="AgregarNuevoUsuario" min="-2" pref="31" max="-2" attributes="0"/>
-                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="263" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="NombreIngresar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nombre:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="CarnetIngresar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Carnet:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="PlacaIngresar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Placa:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="IngresarNombre">
-            </Component>
-            <Component class="javax.swing.JTextField" name="IngresarCarnet">
-            </Component>
-            <Component class="javax.swing.JTextField" name="IngresarPlaca">
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="ButMoto">
-              <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="ButtonGroupIngresar"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Motocicleta"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButMotoActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="ButAuto">
-              <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="ButtonGroupIngresar"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Automovil"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="AgregarNuevoUsuario">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Guardar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AgregarNuevoUsuarioActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="Puesto">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
-                    <StringItem index="0" value="ESTUDIANTE"/>
-                    <StringItem index="1" value="CATEDRATICO"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
+            <Container class="javax.swing.JPanel" name="jPanel2">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Component id="SalidaTickeID" min="-2" pref="97" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="RecibirTickeid" min="-2" pref="189" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jButton1" min="-2" pref="131" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="SalidaPlano" min="-2" pref="130" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="284" max="-2" attributes="0"/>
+                                  <Component id="GuardarSalida" min="-2" pref="155" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="223" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="SalidaTickeID" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="RecibirTickeid" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="SalidaPlano" min="-2" pref="40" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="GuardarSalida" min="-2" pref="50" max="-2" attributes="0"/>
+                          <EmptySpace pref="145" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="SalidaTickeID">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Ingrese ticket Id"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="RecibirTickeid">
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Buscar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JCheckBox" name="SalidaPlano">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="PrimeraSalida?"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="GuardarSalida">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Guardar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GuardarSalidaActionPerformed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
       </SubComponents>

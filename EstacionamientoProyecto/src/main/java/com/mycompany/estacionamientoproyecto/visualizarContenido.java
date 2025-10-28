@@ -6,7 +6,6 @@ package com.mycompany.estacionamientoproyecto;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -26,10 +25,12 @@ public class visualizarContenido extends javax.swing.JFrame {
         initComponents();
         
         //ocultar
+        
+        
+        
     PanelLogin.setVisible(true);
     PanelFunciones.setVisible(false);
-    JpanelAñadirUsuario.setVisible(false);
-    PanelIngresarDatos.setVisible(false);
+    
     TxtEspera.setVisible(false);
     BarraTiempo.setVisible(false);
         TxtTiempoI.setVisible(false);
@@ -89,6 +90,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         ButGroupFunciones = new javax.swing.ButtonGroup();
         FormatoTiempo = new javax.swing.ButtonGroup();
         grupoTipoAutoingresado = new javax.swing.ButtonGroup();
+        ButonGroupOpciones = new javax.swing.ButtonGroup();
         PanelLogin = new javax.swing.JPanel();
         bienvenida = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -102,12 +104,9 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         TxtEspera = new javax.swing.JLabel();
         BarraTiempo = new javax.swing.JProgressBar();
         butSalir = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         PanelFunciones = new javax.swing.JPanel();
-        ButIngresar = new javax.swing.JToggleButton();
-        ButDisponibilidad = new javax.swing.JToggleButton();
-        ButEliminar = new javax.swing.JToggleButton();
-        ButModificar = new javax.swing.JToggleButton();
-        ButFinancias = new javax.swing.JToggleButton();
         PanelIngresarDatos = new javax.swing.JPanel();
         NoPlaca = new javax.swing.JLabel();
         ingresaPlaca = new javax.swing.JTextField();
@@ -121,6 +120,10 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         generarImpresion = new javax.swing.JButton();
         autoautoingresado = new javax.swing.JRadioButton();
         motoautoingresado = new javax.swing.JRadioButton();
+        Pago = new javax.swing.JComboBox<>();
+        txtpago = new javax.swing.JLabel();
+        BilleteIngresado = new javax.swing.JTextField();
+        PuestoBuscandoPlaca = new javax.swing.JComboBox<>();
         JpanelAñadirUsuario = new javax.swing.JPanel();
         NombreIngresar = new javax.swing.JLabel();
         CarnetIngresar = new javax.swing.JLabel();
@@ -132,6 +135,14 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         ButAuto = new javax.swing.JRadioButton();
         AgregarNuevoUsuario = new javax.swing.JButton();
         Puesto = new javax.swing.JComboBox<>();
+        buttRegresar = new javax.swing.JButton();
+        JpaneSalida = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        SalidaTickeID = new javax.swing.JLabel();
+        RecibirTickeid = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        SalidaPlano = new javax.swing.JCheckBox();
+        GuardarSalida = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -183,25 +194,25 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
             .addGroup(PanelLoginLayout.createSequentialGroup()
                 .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelLoginLayout.createSequentialGroup()
-                        .addGap(362, 362, 362)
+                        .addGap(342, 342, 342)
                         .addComponent(bienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelLoginLayout.createSequentialGroup()
-                        .addGap(301, 301, 301)
+                        .addGap(291, 291, 291)
                         .addComponent(SelecAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
                         .addComponent(SelectEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelLoginLayout.createSequentialGroup()
-                        .addGap(330, 330, 330)
+                        .addGap(320, 320, 320)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelLoginLayout.createSequentialGroup()
                         .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelLoginLayout.createSequentialGroup()
                                 .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(PanelLoginLayout.createSequentialGroup()
-                                        .addGap(277, 277, 277)
+                                        .addGap(267, 267, 267)
                                         .addComponent(LoginUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(PanelLoginLayout.createSequentialGroup()
-                                        .addGap(268, 268, 268)
+                                        .addGap(258, 258, 258)
                                         .addComponent(loginContra, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLoginLayout.createSequentialGroup()
@@ -218,7 +229,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLoginLayout.createSequentialGroup()
                                 .addComponent(butSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(136, 136, 136)))))
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
         PanelLoginLayout.setVerticalGroup(
             PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,37 +264,9 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                 .addContainerGap(87, Short.MAX_VALUE))
         );
 
-        ButGroupFunciones.add(ButIngresar);
-        ButIngresar.setText("Ingresar");
-        ButIngresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButIngresarActionPerformed(evt);
-            }
-        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ButGroupFunciones.add(ButDisponibilidad);
-        ButDisponibilidad.setText("Disponibilidad");
-        ButDisponibilidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButDisponibilidadActionPerformed(evt);
-            }
-        });
-
-        ButGroupFunciones.add(ButEliminar);
-        ButEliminar.setText("Eliminar");
-        ButEliminar.setAutoscrolls(true);
-
-        ButGroupFunciones.add(ButModificar);
-        ButModificar.setText("Modificar");
-        ButModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButModificarActionPerformed(evt);
-            }
-        });
-
-        ButGroupFunciones.add(ButFinancias);
-        ButFinancias.setText("Financias");
-
+        PanelIngresarDatos.setToolTipText("");
         PanelIngresarDatos.setAutoscrolls(true);
 
         NoPlaca.setText("Placa:");
@@ -318,9 +301,19 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
 
         TxtTiempoI.setText("Tiempo");
 
+        TiempoVariable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TiempoVariableMouseClicked(evt);
+            }
+        });
         TiempoVariable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TiempoVariableActionPerformed(evt);
+            }
+        });
+        TiempoVariable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TiempoVariableKeyTyped(evt);
             }
         });
 
@@ -347,69 +340,124 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
             }
         });
 
+        Pago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Tarjeta" }));
+        Pago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PagoActionPerformed(evt);
+            }
+        });
+
+        txtpago.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtpago.setText(" Ingrese ");
+
+        BilleteIngresado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BilleteIngresadoActionPerformed(evt);
+            }
+        });
+
+        PuestoBuscandoPlaca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESTUDIANTE", "CATEDRATICO" }));
+        PuestoBuscandoPlaca.setToolTipText("");
+        PuestoBuscandoPlaca.setEnabled(false);
+        PuestoBuscandoPlaca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PuestoBuscandoPlacaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelIngresarDatosLayout = new javax.swing.GroupLayout(PanelIngresarDatos);
         PanelIngresarDatos.setLayout(PanelIngresarDatosLayout);
         PanelIngresarDatosLayout.setHorizontalGroup(
             PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
-                .addGap(282, 282, 282)
-                .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(178, 178, 178)
+                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                        .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                                .addGap(77, 77, 77)
+                                .addComponent(ButFlat, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ButVariable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                                    .addComponent(NoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(ingresaPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(42, 42, 42)
+                                    .addComponent(BuscarDbPlaca))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelIngresarDatosLayout.createSequentialGroup()
+                                    .addGap(120, 120, 120)
+                                    .addComponent(generarImpresion)))
+                            .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addComponent(BilleteIngresado, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Pago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                                .addComponent(TxtTiempoI, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TiempoVariable, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
+                                        .addComponent(autoautoingresado, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(motoautoingresado, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, Short.MAX_VALUE))
+                                    .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelIngresarDatosLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(PuestoBuscandoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(148, 148, 148))))))
             .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
-                .addGap(222, 222, 222)
-                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TxtTiempoI, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NoPlaca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
-                        .addComponent(ingresaPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(BuscarDbPlaca))
-                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
-                        .addComponent(ButFlat, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ButVariable, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
-                        .addComponent(autoautoingresado, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(motoautoingresado, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
-                        .addComponent(TiempoVariable, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63)
-                        .addComponent(generarImpresion)))
-                .addGap(0, 341, Short.MAX_VALUE))
+                .addGap(70, 70, 70)
+                .addComponent(txtpago, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         PanelIngresarDatosLayout.setVerticalGroup(
             PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
+                .addGap(62, 62, 62)
                 .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ingresaPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BuscarDbPlaca))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(autoautoingresado)
-                    .addComponent(motoautoingresado))
-                .addGap(19, 19, 19)
-                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButFlat)
-                    .addComponent(ButVariable))
                 .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TiempoVariable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtTiempoI)))
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelIngresarDatosLayout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(generarImpresion)))
-                .addGap(323, 323, 323))
+                        .addGap(18, 18, 18)
+                        .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(autoautoingresado)
+                            .addComponent(motoautoingresado))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PuestoBuscandoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(6, 6, 6)
+                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButFlat)
+                    .addComponent(ButVariable))
+                .addGap(29, 29, 29)
+                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TxtTiempoI)
+                    .addComponent(TiempoVariable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(PanelIngresarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtpago)
+                    .addComponent(Pago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BilleteIngresado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(generarImpresion)
+                .addGap(328, 328, 328))
         );
 
         NombreIngresar.setText("Nombre:");
@@ -437,6 +485,11 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         });
 
         Puesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESTUDIANTE", "CATEDRATICO" }));
+        Puesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PuestoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout JpanelAñadirUsuarioLayout = new javax.swing.GroupLayout(JpanelAñadirUsuario);
         JpanelAñadirUsuario.setLayout(JpanelAñadirUsuarioLayout);
@@ -466,7 +519,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                     .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
                         .addGap(167, 167, 167)
                         .addComponent(AgregarNuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
         JpanelAñadirUsuarioLayout.setVerticalGroup(
             JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -490,75 +543,148 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                     .addComponent(Puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(AgregarNuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
+
+        buttRegresar.setText("REGRESAR");
+        buttRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelFuncionesLayout = new javax.swing.GroupLayout(PanelFunciones);
         PanelFunciones.setLayout(PanelFuncionesLayout);
         PanelFuncionesLayout.setHorizontalGroup(
             PanelFuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelFuncionesLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(ButIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ButDisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ButEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ButModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ButFinancias, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(131, 131, 131))
             .addGroup(PanelFuncionesLayout.createSequentialGroup()
                 .addGroup(PanelFuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelFuncionesLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
+                        .addContainerGap()
+                        .addComponent(buttRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
                         .addComponent(PanelIngresarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelFuncionesLayout.createSequentialGroup()
-                        .addGap(175, 175, 175)
+                        .addGap(207, 207, 207)
                         .addComponent(JpanelAñadirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(220, Short.MAX_VALUE))
         );
         PanelFuncionesLayout.setVerticalGroup(
             PanelFuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelFuncionesLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addGroup(PanelFuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ButFinancias)
-                    .addComponent(ButModificar)
-                    .addComponent(ButEliminar)
-                    .addComponent(ButDisponibilidad)
-                    .addComponent(ButIngresar))
-                .addGap(44, 44, 44)
-                .addComponent(PanelIngresarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelFuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelFuncionesLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(PanelIngresarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelFuncionesLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(buttRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(JpanelAñadirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
+
+        jTabbedPane1.addTab("Ingreso", PanelFunciones);
+
+        SalidaTickeID.setText("Ingrese ticket Id");
+
+        jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        SalidaPlano.setText("PrimeraSalida?");
+
+        GuardarSalida.setText("Guardar");
+        GuardarSalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarSalidaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(SalidaTickeID, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(RecibirTickeid, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(SalidaPlano, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(284, 284, 284)
+                        .addComponent(GuardarSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(223, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(149, 149, 149)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(SalidaTickeID)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(RecibirTickeid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1)))
+                .addGap(18, 18, 18)
+                .addComponent(SalidaPlano, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(GuardarSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(145, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout JpaneSalidaLayout = new javax.swing.GroupLayout(JpaneSalida);
+        JpaneSalida.setLayout(JpaneSalidaLayout);
+        JpaneSalidaLayout.setHorizontalGroup(
+            JpaneSalidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JpaneSalidaLayout.createSequentialGroup()
+                .addGap(141, 141, 141)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(143, Short.MAX_VALUE))
+        );
+        JpaneSalidaLayout.setVerticalGroup(
+            JpaneSalidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JpaneSalidaLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(263, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Salida", JpaneSalida);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(PanelFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(638, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 296, Short.MAX_VALUE)
-                .addComponent(PanelFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(376, 376, 376))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
+
+        jTabbedPane1.getAccessibleContext().setAccessibleName("Ingresar");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -597,33 +723,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         
         
     }//GEN-LAST:event_butSalirMouseClicked
-
-    private void ButModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButModificarActionPerformed
-        
-        
-       
-        
-           if( ButModificar.isSelected()){
-               PanelIngresarDatos.setVisible(true);
-               
-
-    }//GEN-LAST:event_ButModificarActionPerformed
-    }
-    private void ButDisponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButDisponibilidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ButDisponibilidadActionPerformed
-
-    private void ButIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButIngresarActionPerformed
-        
-        
-       
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_ButIngresarActionPerformed
-
+    
     private void ButMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButMotoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ButMotoActionPerformed
@@ -705,10 +805,11 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
 
     private void ButFlatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButFlatActionPerformed
 
-        
-        
-        
-        
+        TxtTiempoI.setVisible(false);
+         TiempoVariable.setVisible(false);
+        Pago.setVisible(true);
+        txtpago.setVisible(true);
+        BilleteIngresado.setVisible(true);
         
     }//GEN-LAST:event_ButFlatActionPerformed
 
@@ -716,31 +817,50 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         
         
         
-         UsuarioDB us= new UsuarioDB();
-         
-         Vehiculo Encontrado=us.BuscarPorPlaca(ingresaPlaca.getText());
-         
-         if(Encontrado!=null){
-             
-             aviso.setText("Usuario encontrado Prosiga");
-              String modelo = Encontrado.getTipo();
-         
-         
-         
-        if(modelo.equalsIgnoreCase("automovil")){
-            
-           autoautoingresado.setSelected(true);
-            
-        }else if(modelo.equalsIgnoreCase("moto")){
-            
-            motoautoingresado.setSelected(true);
-        }}else{
-             
-            JpanelAñadirUsuario.setVisible(true);
-            PanelIngresarDatos.setVisible(false);
-             JOptionPane.showMessageDialog(null,"Usuario no Hallado","INGRESE USUARIO",JOptionPane.INFORMATION_MESSAGE);
-         }
-         
+      UsuarioDB us = new UsuarioDB();
+Vehiculo Encontrado = us.BuscarPorPlaca(ingresaPlaca.getText());
+
+if (Encontrado != null) {
+
+    aviso.setText("Usuario encontrado Prosiga");
+    
+   
+    String modelo = Encontrado.getTipo();
+    if (modelo.equalsIgnoreCase("automovil")) {
+        autoautoingresado.setSelected(true);
+    } else if (modelo.equalsIgnoreCase("moto")) {
+        motoautoingresado.setSelected(true);
+    }
+    
+    
+    if (Encontrado.getPuesto() != null) {
+        if (Encontrado.getPuesto().equalsIgnoreCase("ESTUDIANTE")) {
+            PuestoBuscandoPlaca.setSelectedItem("ESTUDIANTE");
+        } else if (Encontrado.getPuesto().equalsIgnoreCase("CATEDRATICO")) {
+            PuestoBuscandoPlaca.setSelectedItem("CATEDRATICO");
+        }
+    }
+    
+} else {
+   
+    int respuesta = JOptionPane.showConfirmDialog(
+        null, 
+        "Usuario no Hallado", 
+        "¿DESEA INGRESAR USUARIO?", 
+        JOptionPane.YES_NO_OPTION
+    );
+    
+    if (respuesta == JOptionPane.YES_OPTION) {
+      
+        JpanelAñadirUsuario.setVisible(true);
+        PanelIngresarDatos.setVisible(false);
+    } else {
+     
+        aviso.setText("Placa no encontrada. Intente nuevamente.");
+        ingresaPlaca.setText(""); 
+        ingresaPlaca.requestFocus(); 
+    }
+}
          
          
       
@@ -755,7 +875,19 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         if(ButVariable.isSelected()){
             TxtTiempoI.setVisible(true);
             TiempoVariable.setVisible(true);
-     
+        
+               
+        
+        Pago.setVisible(true);
+        txtpago.setVisible(true);
+        BilleteIngresado.setVisible(true);
+            
+            
+         
+         TiempoVariable.setText("FORMATO; hora:minutos; '23':'03'");
+
+        
+         
         }
         
         
@@ -777,14 +909,133 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
 
     private void generarImpresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarImpresionActionPerformed
 
+        String Placa=ingresaPlaca.getText();
+        
+        
+        String vehiculo="";
+        if(motoautoingresado.isSelected()){
+            
+           vehiculo="moto";
+            
+        }else if(autoautoingresado.isSelected()){
+            vehiculo="automovil";
+            
+        }
+      
+        
+        
+        String idarea="";
+        if(PuestoBuscandoPlaca.getSelectedItem().equals("CATEDRATICO")){
+           
+           idarea="CATEDRATICO";
+           
+       }else if(PuestoBuscandoPlaca.getSelectedItem().equals("ESTUDIANTE")){
+           
+         
+           
+           idarea="ESTUDIANTE";
+       }
+        
+      
+        String modo="";
+        double tiempo=0;
+        double pago=0;
+        if(ButVariable.isSelected()){
+            modo="variable";
+            tiempo=Double.parseDouble(TiempoVariable.getText());
+        }else if(ButFlat.isSelected()){
+            modo="plano";
+            pago=Double.parseDouble(BilleteIngresado.getText());
+            
+        }
+        
+        
+        
         
         
         UsuarioDB us=new UsuarioDB();
-
+          
+        us.AsignarSpot(Placa, idarea, modo,pago,vehiculo,tiempo );
         
      
     }//GEN-LAST:event_generarImpresionActionPerformed
 
+    private void TiempoVariableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TiempoVariableMouseClicked
+    
+  
+    
+    TiempoVariable.setText("");
+        
+    }//GEN-LAST:event_TiempoVariableMouseClicked
+
+    private void BilleteIngresadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BilleteIngresadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BilleteIngresadoActionPerformed
+
+    private void PagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagoActionPerformed
+        if(Pago.getSelectedItem().equals("Efectivo")){
+            
+         txtpago.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 12));
+        txtpago.setText("Ingrese Efectivo");
+            
+    }else if(Pago.getSelectedItem().equals("Tarjeta")){
+        
+         txtpago.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 12));
+        txtpago.setText("Ingrese No. de tarjeta");
+        
+    }
+                
+                
+                
+    }//GEN-LAST:event_PagoActionPerformed
+
+    private void PuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PuestoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PuestoActionPerformed
+
+    private void TiempoVariableKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TiempoVariableKeyTyped
+   
+    
+
+    
+    
+        
+        
+        
+    }//GEN-LAST:event_TiempoVariableKeyTyped
+
+    private void PuestoBuscandoPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PuestoBuscandoPlacaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PuestoBuscandoPlacaActionPerformed
+
+    private void buttRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttRegresarActionPerformed
+       
+    
+  JpanelAñadirUsuario.setVisible(true);
+PanelIngresarDatos.setVisible(false);
+buttRegresar.setEnabled(false);  
+
+JpanelAñadirUsuario.setVisible(false);
+PanelIngresarDatos.setVisible(true);
+buttRegresar.setEnabled(true);
+      
+    }//GEN-LAST:event_buttRegresarActionPerformed
+
+    private void GuardarSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarSalidaActionPerformed
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GuardarSalidaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -819,35 +1070,39 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarNuevoUsuario;
     private javax.swing.JProgressBar BarraTiempo;
+    private javax.swing.JTextField BilleteIngresado;
     private javax.swing.JButton BuscarDbPlaca;
     private javax.swing.JRadioButton ButAuto;
-    private javax.swing.JToggleButton ButDisponibilidad;
-    private javax.swing.JToggleButton ButEliminar;
-    private javax.swing.JToggleButton ButFinancias;
     private javax.swing.JRadioButton ButFlat;
     private javax.swing.ButtonGroup ButGroupFunciones;
-    private javax.swing.JToggleButton ButIngresar;
-    private javax.swing.JToggleButton ButModificar;
     private javax.swing.JRadioButton ButMoto;
     private javax.swing.JRadioButton ButVariable;
+    private javax.swing.ButtonGroup ButonGroupOpciones;
     private javax.swing.ButtonGroup ButtGrupoLogin;
     private javax.swing.ButtonGroup ButtonGroupIngresar;
     private javax.swing.JLabel CarnetIngresar;
     private javax.swing.JPasswordField ContraIngresada;
     private javax.swing.ButtonGroup FormatoTiempo;
+    private javax.swing.JButton GuardarSalida;
     private javax.swing.JTextField IngresarCarnet;
     private javax.swing.JTextField IngresarNombre;
     private javax.swing.JTextField IngresarPlaca;
     private javax.swing.JButton IniciarSesion;
+    private javax.swing.JPanel JpaneSalida;
     private javax.swing.JPanel JpanelAñadirUsuario;
     private javax.swing.JLabel LoginUsuario;
     private javax.swing.JLabel NoPlaca;
     private javax.swing.JLabel NombreIngresar;
+    private javax.swing.JComboBox<String> Pago;
     private javax.swing.JPanel PanelFunciones;
     private javax.swing.JPanel PanelIngresarDatos;
     private javax.swing.JPanel PanelLogin;
     private javax.swing.JLabel PlacaIngresar;
     private javax.swing.JComboBox<String> Puesto;
+    private javax.swing.JComboBox<String> PuestoBuscandoPlaca;
+    private javax.swing.JTextField RecibirTickeid;
+    private javax.swing.JCheckBox SalidaPlano;
+    private javax.swing.JLabel SalidaTickeID;
     private javax.swing.JRadioButton SelecAdmin;
     private javax.swing.JRadioButton SelectEmpleado;
     private javax.swing.JTextField TiempoVariable;
@@ -858,12 +1113,18 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
     private javax.swing.JLabel aviso;
     private javax.swing.JLabel bienvenida;
     private javax.swing.JButton butSalir;
+    private javax.swing.JButton buttRegresar;
     private javax.swing.JButton generarImpresion;
     private javax.swing.ButtonGroup grupoTipoAutoingresado;
     private javax.swing.JTextField ingresaPlaca;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel loginContra;
     private javax.swing.JRadioButton motoautoingresado;
+    private javax.swing.JLabel txtpago;
     // End of variables declaration//GEN-END:variables
 }
