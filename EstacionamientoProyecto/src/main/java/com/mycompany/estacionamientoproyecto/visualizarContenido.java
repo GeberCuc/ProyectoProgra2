@@ -140,9 +140,8 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         jPanel2 = new javax.swing.JPanel();
         SalidaTickeID = new javax.swing.JLabel();
         RecibirTickeid = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        BuscarTIckeID = new javax.swing.JButton();
         SalidaPlano = new javax.swing.JCheckBox();
-        GuardarSalida = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -588,41 +587,29 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
 
         SalidaTickeID.setText("Ingrese ticket Id");
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BuscarTIckeID.setText("Buscar");
+        BuscarTIckeID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BuscarTIckeIDActionPerformed(evt);
             }
         });
 
         SalidaPlano.setText("PrimeraSalida?");
-
-        GuardarSalida.setText("Guardar");
-        GuardarSalida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GuardarSalidaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(SalidaTickeID, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(SalidaTickeID, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(RecibirTickeid, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(RecibirTickeid, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(SalidaPlano, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(284, 284, 284)
-                        .addComponent(GuardarSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(BuscarTIckeID, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SalidaPlano, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(223, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -633,12 +620,10 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                     .addComponent(SalidaTickeID)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(RecibirTickeid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1)))
+                        .addComponent(BuscarTIckeID)))
                 .addGap(18, 18, 18)
                 .addComponent(SalidaPlano, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(GuardarSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout JpaneSalidaLayout = new javax.swing.GroupLayout(JpaneSalida);
@@ -1021,16 +1006,17 @@ buttRegresar.setEnabled(true);
       
     }//GEN-LAST:event_buttRegresarActionPerformed
 
-    private void GuardarSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarSalidaActionPerformed
-
-
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_GuardarSalidaActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void BuscarTIckeIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarTIckeIDActionPerformed
+        
+        
+       String ID=RecibirTickeid.getText();
+        
+        
+        UsuarioDB us= new UsuarioDB();
+        
+        us.RegistrarSalida(ID);
+        
+    }//GEN-LAST:event_BuscarTIckeIDActionPerformed
 
     
     
@@ -1072,6 +1058,7 @@ buttRegresar.setEnabled(true);
     private javax.swing.JProgressBar BarraTiempo;
     private javax.swing.JTextField BilleteIngresado;
     private javax.swing.JButton BuscarDbPlaca;
+    private javax.swing.JButton BuscarTIckeID;
     private javax.swing.JRadioButton ButAuto;
     private javax.swing.JRadioButton ButFlat;
     private javax.swing.ButtonGroup ButGroupFunciones;
@@ -1083,7 +1070,6 @@ buttRegresar.setEnabled(true);
     private javax.swing.JLabel CarnetIngresar;
     private javax.swing.JPasswordField ContraIngresada;
     private javax.swing.ButtonGroup FormatoTiempo;
-    private javax.swing.JButton GuardarSalida;
     private javax.swing.JTextField IngresarCarnet;
     private javax.swing.JTextField IngresarNombre;
     private javax.swing.JTextField IngresarPlaca;
@@ -1117,7 +1103,6 @@ buttRegresar.setEnabled(true);
     private javax.swing.JButton generarImpresion;
     private javax.swing.ButtonGroup grupoTipoAutoingresado;
     private javax.swing.JTextField ingresaPlaca;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

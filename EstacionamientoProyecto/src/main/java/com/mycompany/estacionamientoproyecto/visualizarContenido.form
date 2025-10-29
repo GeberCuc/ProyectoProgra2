@@ -757,24 +757,16 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="SalidaTickeID" min="-2" pref="97" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
-                                  <Component id="SalidaTickeID" min="-2" pref="97" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="RecibirTickeid" min="-2" pref="189" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="RecibirTickeid" min="-2" pref="189" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jButton1" min="-2" pref="131" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="SalidaPlano" min="-2" pref="130" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="BuscarTIckeID" min="-2" pref="131" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="284" max="-2" attributes="0"/>
-                                  <Component id="GuardarSalida" min="-2" pref="155" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="SalidaPlano" min="-2" pref="130" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="223" max="32767" attributes="0"/>
                       </Group>
@@ -788,14 +780,12 @@
                               <Component id="SalidaTickeID" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="RecibirTickeid" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="BuscarTIckeID" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="SalidaPlano" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="GuardarSalida" min="-2" pref="50" max="-2" attributes="0"/>
-                          <EmptySpace pref="145" max="32767" attributes="0"/>
+                          <EmptySpace pref="213" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -808,26 +798,18 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="RecibirTickeid">
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="BuscarTIckeID">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Buscar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BuscarTIckeIDActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="SalidaPlano">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="PrimeraSalida?"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JButton" name="GuardarSalida">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Guardar"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GuardarSalidaActionPerformed"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>
