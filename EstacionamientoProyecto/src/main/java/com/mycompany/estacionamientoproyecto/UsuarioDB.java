@@ -10,9 +10,10 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.TimerTask;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 import java.util.Timer;
+import javax.swing.table.DefaultTableModel;
 
 public class UsuarioDB {
     
@@ -88,7 +89,8 @@ String area="";
         area="A4";
     }
 
-    // --- Definición de sentencias SQL ---
+  String VerificarExistencia = "SELECT COUNT(*) AS Activos FROM Ticket WHERE Placa = ? AND Fechasalida IS NULL";
+   
     String VerificarCapacidad = "SELECT Capacidad FROM Areas WHERE Id = ?";
     String BuscarSpotLibre = "SELECT PosicionID FROM Spots WHERE AreaID = ? AND Estado = 'libre' LIMIT 1";
     String ActualizarSpot = "UPDATE Spots SET Estado='ocupado' WHERE PosicionID=?";
@@ -103,6 +105,32 @@ String area="";
     try {
         Conectado = basededatos.Conectar();
         Conectado.setAutoCommit(false);
+        
+
+
+
+
+
+try (PreparedStatement ps = Conectado.prepareStatement(VerificarExistencia)) {
+    ps.setString(1, Placa);
+    try (ResultSet rs = ps.executeQuery()) {
+        if (rs.next() && rs.getInt("Activos") > 0) {
+            JOptionPane.showMessageDialog(
+                null,
+                "Esta placa ya tiene un ticket activo.",
+                "Ticket Activo",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+            Conectado.rollback();
+            return false; 
+        }
+    }
+}     
+        
+        
+        
+  
+        
 
         // Verificamos si hay cupo disponible
         int capacidad = 0;
@@ -182,7 +210,7 @@ String area="";
         );
 
         return true;
-
+        
     } catch (SQLException e) {
         try {
             if (Conectado != null) Conectado.rollback();
@@ -202,121 +230,176 @@ String area="";
 }
     
    
+   
+   
+   
+   
+   
+   
+   
+   
     
    public boolean RegistrarSalida(String ticketid){
     // Consultas SQL
     String BuscarTicket="SELECT * FROM Ticket WHERE TicketID = ?";
     String ActualizarTicketSalida="UPDATE Ticket SET Fechasalida = ?, monto = ? WHERE TicketID = ?";
-    String liberarSpotSQL="UPDATE Spots SET Estado = 'libre' WHERE PosicionID = ?"; 
-    String obtenerIdArea="SELECT IdArea FROM Ticket WHERE TicketID = ?";
-    String actualizarArea="UPDATE Areas SET Capacidad = Capacidad + 1 WHERE Id = ?";
+   
     
     Connection Conectado=null;
     
     try{
-        Conectado=basededatos.Conectar();
-        Conectado.setAutoCommit(false);
-        
-        String SpotID, modopago, IdArea;
-        LocalDateTime ingreso;
-        double montoPrevio=0;
+    Conectado=basededatos.Conectar();
+    Conectado.setAutoCommit(false);
 
-        // Buscar ticket
-        try(PreparedStatement ps=Conectado.prepareStatement(BuscarTicket)){
-            ps.setString(1,ticketid);
-            try(ResultSet rs=ps.executeQuery()) {
-                if(!rs.next()){
-                    JOptionPane.showMessageDialog(null,"Error,Ticket no hallado: "+ticketid,"ERROR", JOptionPane.ERROR_MESSAGE);
-                    return false;
-                }
-                // Datos del ticket
-                SpotID=rs.getString("Spotid");
-                modopago=rs.getString("modo");
-                ingreso=LocalDateTime.parse(rs.getString("FechaIngreso"));
-                montoPrevio=rs.getDouble("monto");
-                IdArea=rs.getString("IdArea"); // Obtenemos IdArea para actualizar despues
-            }
-        }
+    String SpotID,modopago,IdArea;
+    LocalDateTime ingreso;
+    double montoPrevio=0;
 
-        LocalDateTime salida=LocalDateTime.now();
-        Duration duracion=Duration.between(ingreso, salida);
-        long minutos=duracion.toMinutes();
-        double nuevoMonto=0;
-
-        // Logica de modos de pago
-        if(modopago.equalsIgnoreCase("plano")){
-            if(minutos>120){
-                // Ticket expirado -liberar spot y sumamos en area
-                nuevoMonto=montoPrevio;
-                JOptionPane.showMessageDialog(null,"Ticket expirado - Superó las 2 horas", "EXPIRADO", JOptionPane.WARNING_MESSAGE);
-                liberarSpotYActualizarArea(Conectado,SpotID,IdArea);
-            }else{
-                // Modo plano dentro del tiempo límite
-                int opcion=JOptionPane.showConfirmDialog(null, 
-                    "¿Sale definitivamente?\nTiempo transcurrido: " + minutos + " minutos", 
-                    "Salida Modo Plano", 
-                    JOptionPane.YES_NO_OPTION);
-                
-                if (opcion == JOptionPane.YES_OPTION) {
-                    // Sale de forma definitiva
-                    nuevoMonto=montoPrevio;
-                    liberarSpotYActualizarArea(Conectado,SpotID,IdArea);
-                }else{
-                    // Salida temporal modo espera
-                    iniciarModoEspera(ticketid,SpotID,IdArea,Conectado);
-                    Conectado.commit();
-                    JOptionPane.showMessageDialog(null,"Spot en espera por 2 horas","MODO ESPERA", JOptionPane.INFORMATION_MESSAGE);
-                    return true;
-                }
-            }
-            
-        } else if(modopago.equalsIgnoreCase("variable")){
-            // Calcular monto variable
-            double tarifaHora=10.0;
-            double horas=minutos / 60.0;
-            nuevoMonto=Math.ceil(horas) * tarifaHora; 
-            
-            // Procesar pago
-            double pago=solicitarPago(nuevoMonto);
-            if (pago<nuevoMonto){
-                JOptionPane.showMessageDialog(null,"Pago insuficiente","ERROR", JOptionPane.ERROR_MESSAGE);
-                Conectado.rollback();
+    // Buscar ticket existente
+    try (PreparedStatement ps = Conectado.prepareStatement(BuscarTicket)){
+        ps.setString(1, ticketid);
+        try (ResultSet rs = ps.executeQuery()){
+            if(!rs.next()){
+                JOptionPane.showMessageDialog(null,"Error, Ticket no hallado: "+ticketid,"ERROR",JOptionPane.ERROR_MESSAGE);
                 return false;
             }
-            
-            // Calcular y mostrar vuelto
-            double vuelto=pago-nuevoMonto;
-            if(vuelto>0){
-                JOptionPane.showMessageDialog(null,String.format("Pago recibido: Q%.2f\nVuelto: Q%.2f", pago, vuelto),"PAGO EXITOSO", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            }
-            
+            SpotID=rs.getString("Spotid");
+            modopago=rs.getString("modo");
+            ingreso=LocalDateTime.parse(rs.getString("FechaIngreso"));
+            montoPrevio=rs.getDouble("monto");
+            IdArea=rs.getString("IdArea");
+        }
+    }
+
+    LocalDateTime salida= LocalDateTime.now();
+    Duration duracion=Duration.between(ingreso, salida);
+    long minutos=duracion.toMinutes();
+    double nuevoMonto=0;
+
+  
+    if(modopago.equalsIgnoreCase("plano")){
+        if(minutos>120) {
+            nuevoMonto=montoPrevio;
+            JOptionPane.showMessageDialog(null,"Ticket expirado-Supero las 2 horas","EXPIRADO",JOptionPane.WARNING_MESSAGE);
             liberarSpotYActualizarArea(Conectado,SpotID,IdArea);
+        }else{
+            int opcion=JOptionPane.showConfirmDialog(null,"¿Sale definitivamente?\nTiempo transcurrido: "+minutos+" minutos","Salida Modo Plano",JOptionPane.YES_NO_OPTION);
+
+            if(opcion==JOptionPane.YES_OPTION) {
+                nuevoMonto=montoPrevio;
+                liberarSpotYActualizarArea(Conectado,SpotID,IdArea);
+            }else{
+                iniciarModoEspera(ticketid,SpotID,IdArea,Conectado);
+                Conectado.commit();
+                JOptionPane.showMessageDialog(null,"Spot en espera por 2 horas","MODO ESPERA",JOptionPane.INFORMATION_MESSAGE);
+                return true;
+            }
         }
 
-        // Actualizar ticket
-        try(PreparedStatement ps=Conectado.prepareStatement(ActualizarTicketSalida)){
-            ps.setString(1,salida.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-            ps.setDouble(2,nuevoMonto);
-            ps.setString(3,ticketid);
-            ps.executeUpdate();
+    }else if(modopago.equalsIgnoreCase("variable")){
+        double tarifaHora=10.0;
+        double horas=minutos/60.0;
+        nuevoMonto=Math.ceil(horas)*tarifaHora;
+
+        double pago=solicitarPago(nuevoMonto);
+        if(pago<nuevoMonto){
+            JOptionPane.showMessageDialog(null,"Pago insuficiente","ERROR",JOptionPane.ERROR_MESSAGE);
+            Conectado.rollback();
+            return false;
         }
 
-        Conectado.commit();
-        JOptionPane.showMessageDialog(null,"Proceso completado exitosamente","ÉXITO", JOptionPane.INFORMATION_MESSAGE);
-        return true;
+        double vuelto=pago-nuevoMonto;
+        if (vuelto>0){
+            JOptionPane.showMessageDialog(null, String.format("Pago recibido: Q%.2f\nVuelto: Q%.2f",pago,vuelto),"PAGO EXITOSO",JOptionPane.INFORMATION_MESSAGE);
+        }
 
-    }catch(SQLException h){
-        try{ 
-            if (Conectado !=null) Conectado.rollback(); 
-        }catch (SQLException ignored){}
-        JOptionPane.showMessageDialog(null,"Error al registrar salida: "+h.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        liberarSpotYActualizarArea(Conectado,SpotID,IdArea);
+    }
+
+    // Actualizar salida
+    try (PreparedStatement ps=Conectado.prepareStatement(ActualizarTicketSalida)) {
+        ps.setString(1,salida.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        ps.setDouble(2,nuevoMonto);
+        ps.setString(3,ticketid);
+        ps.executeUpdate();
+    }
+
+    Conectado.commit();
+    JOptionPane.showMessageDialog(null,"Proceso completado exitosamente","EXITO",JOptionPane.INFORMATION_MESSAGE);
+    return true;
+
+}catch(SQLException h) {
+    try{
+        if(Conectado!=null)Conectado.rollback();
+    }catch (SQLException ignored) {}
+    JOptionPane.showMessageDialog(null,"Error al registrar salida: "+h.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE);
+    return false;
+}finally{
+    basededatos.cerrar(Conectado);
+}
+}
+
+   
+   
+   
+   public boolean ReingresoTicket(String ticketid) {
+    String BuscarTicket="SELECT * FROM Ticket WHERE TicketID =?";
+    String actualizarSpot="UPDATE Spots SET Estado='ocupado' WHERE PosicionID=?";
+    Connection Conectado=null;
+
+    try{
+        Conectado=basededatos.Conectar();
+        Conectado.setAutoCommit(false);
+
+        String SpotID;
+        LocalDateTime ingreso;
+
+        try(PreparedStatement ps=Conectado.prepareStatement(BuscarTicket)){
+            ps.setString(1,ticketid);
+            try(ResultSet rs=ps.executeQuery()){
+                if(!rs.next()) {
+                    JOptionPane.showMessageDialog(null,"Ticket no encontrado: "+ticketid,"ERROR",JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
+                SpotID= rs.getString("Spotid"); //obtenemos datos
+                ingreso=LocalDateTime.parse(rs.getString("FechaIngreso"));
+            }
+        }
+
+        LocalDateTime ahora=LocalDateTime.now();
+        long minutos=Duration.between(ingreso, ahora).toMinutes();
+
+        if(minutos<=120){
+            int opcion= JOptionPane.showConfirmDialog(null," De 2 horas le quedan (" + minutos + " min).\n¿Desea reingresar con la misma placa?","REINGRESO",JOptionPane.YES_NO_OPTION);
+
+            if(opcion==JOptionPane.YES_OPTION){
+                try(PreparedStatement ps= Conectado.prepareStatement(actualizarSpot)){
+                    ps.setString(1, SpotID);
+                    ps.executeUpdate();
+                }
+                Conectado.commit();
+                JOptionPane.showMessageDialog(null,"Reingreso exitoso. Spot marcado como ocupado.","REINGRESO",JOptionPane.INFORMATION_MESSAGE);
+                return true;
+            }
+        }
+
+        Conectado.rollback();
+        return false;
+
+    }catch(SQLException e){
+        try{if (Conectado != null)Conectado.rollback();
+        }catch(SQLException ignored){
+        }
+        JOptionPane.showMessageDialog(null,"Error en reingreso: "+ e.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE);
         return false;
     }finally{
         basededatos.cerrar(Conectado);
     }
 }
-
+   
+  
+   
+   
 //Liberar spot Y sumar +1 en Area
 private void liberarSpotYActualizarArea(Connection Conectado,String spotID,String idArea) throws SQLException{
     //  Liberaramos el spot
@@ -471,5 +554,70 @@ private double obtenerMontoPlano(String ticketID, Connection Conectado)throws SQ
         }
     }
         
+   
+    
+    
+    
+    public void datosEnTabla(JTable TablaParaVisualizar){
         
+        String Consulta="SELECT *FROM Ticket";
+        
+        
+        
+        
+        try(Connection Conectado=basededatos.Conectar(); PreparedStatement ps=Conectado.prepareStatement(Consulta); ResultSet rs=ps.executeQuery();){
+            
+           
+            DefaultTableModel ver=(DefaultTableModel)TablaParaVisualizar.getModel();
+            
+
+            ver.setRowCount(0);
+            
+            
+           
+            
+            
+            
+            
+            
+            
+            
+            while(rs.next()){
+                
+                  Object [] datos={
+                      
+                      rs.getString("TicketID"),
+                      rs.getString("Placa"),
+                      rs.getString("IdArea"),
+                      rs.getString("Spotid"),
+                      rs.getString("FechaIngreso"),
+                      rs.getString("FechaSalida"),
+                      rs.getString("modo"),
+                      rs.getString("monto"),
+                      rs.getString("TiempoPagado")
+                  
+                  }; 
+            
+                  ver.addRow(datos);
+                  
+            }
+            
+         
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "ERROR"+e.getMessage(),"ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
