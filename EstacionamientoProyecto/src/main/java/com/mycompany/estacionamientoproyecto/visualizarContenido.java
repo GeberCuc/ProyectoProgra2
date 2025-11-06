@@ -4,7 +4,8 @@
  */
 package com.mycompany.estacionamientoproyecto;
 
-import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -24,10 +25,23 @@ public class visualizarContenido extends javax.swing.JFrame {
     public visualizarContenido() {
         initComponents();
         
-        //ocultar
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //ocultar
         UsuarioDB us=new UsuarioDB();
         us.datosEnTabla(TablaParaVisualizar);
+        MostrarGanancias.setText(us.DatosDeldia());
+        
+
+       
         
     PanelLogin.setVisible(true);
     PanelFunciones.setVisible(false);
@@ -152,6 +166,11 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaParaVisualizar = new javax.swing.JTable();
+        CopiaInfo = new javax.swing.JButton();
+        Actualizar = new javax.swing.JButton();
+        MostrarGanancias = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -744,20 +763,54 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         });
         jScrollPane1.setViewportView(TablaParaVisualizar);
 
+        CopiaInfo.setText("Copiar");
+        CopiaInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopiaInfoActionPerformed(evt);
+            }
+        });
+
+        Actualizar.setText("Actualizar");
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarActionPerformed(evt);
+            }
+        });
+
+        MostrarGanancias.setText("jLabel3");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 777, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 167, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(CopiaInfo)
+                        .addGap(18, 18, 18)
+                        .addComponent(Actualizar))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(190, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(MostrarGanancias, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(104, 104, 104))
+                .addGap(23, 23, 23)
+                .addComponent(MostrarGanancias, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CopiaInfo)
+                    .addComponent(Actualizar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -765,19 +818,49 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(23, 23, 23)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab3", jPanel3);
+        jTabbedPane1.addTab("Ver", jPanel3);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 838, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 521, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(173, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(249, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Cargar", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -996,11 +1079,11 @@ if (Encontrado != null) {
             TxtTiempoI.setVisible(true);
             TiempoVariable.setVisible(true);
         
-               
+ 
         
-        Pago.setVisible(true);
-        txtpago.setVisible(true);
-        BilleteIngresado.setVisible(true);
+        Pago.setVisible(false);
+        txtpago.setVisible(false);
+        BilleteIngresado.setVisible(false);
             
             
          
@@ -1077,7 +1160,13 @@ if (Encontrado != null) {
           
         us.AsignarSpot(Placa, idarea, modo,pago,vehiculo,tiempo );
         
-     
+        
+        
+        
+        
+        
+        ingresaPlaca.setText("");
+     BilleteIngresado.setText("");
     }//GEN-LAST:event_generarImpresionActionPerformed
 
     private void TiempoVariableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TiempoVariableMouseClicked
@@ -1144,6 +1233,7 @@ if (Encontrado != null) {
     }//GEN-LAST:event_buttRegresarActionPerformed
 
     private void BuscarTIckeIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarTIckeIDActionPerformed
+      
         
         
        String ID=RecibirTickeid.getText();
@@ -1152,7 +1242,7 @@ if (Encontrado != null) {
         UsuarioDB us= new UsuarioDB();
         
         us.RegistrarSalida(ID);
-        
+        RecibirTickeid.setText("");
     }//GEN-LAST:event_BuscarTIckeIDActionPerformed
 
     private void PanelReingresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PanelReingresoActionPerformed
@@ -1174,12 +1264,37 @@ if (Encontrado != null) {
         
         UsuarioDB us= new UsuarioDB();
         us.ReingresoTicket(Ticket);
+        Reingreso.setText("");
        
     }//GEN-LAST:event_ButReingresoActionPerformed
 
     private void ReingresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReingresoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ReingresoActionPerformed
+
+    private void CopiaInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiaInfoActionPerformed
+   
+        int fila=TablaParaVisualizar.getSelectedRow();
+    int columna= TablaParaVisualizar.getSelectedColumn();
+
+    if(fila !=-1&&columna !=-1){
+        Object valor=TablaParaVisualizar.getValueAt(fila, columna);
+        StringSelection seleccion = new StringSelection(valor.toString());
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(seleccion,null);
+        JOptionPane.showMessageDialog(null,"Celda copiada: " + valor);
+    }else{
+        JOptionPane.showMessageDialog(null,"Seleccione una celda antes de copiar.");
+    }
+
+    }//GEN-LAST:event_CopiaInfoActionPerformed
+
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
+       
+        UsuarioDB us=new UsuarioDB();
+       
+        us.datosEnTabla(TablaParaVisualizar);
+         MostrarGanancias.setText(us.DatosDeldia());
+    }//GEN-LAST:event_ActualizarActionPerformed
 
     
     
@@ -1217,6 +1332,7 @@ if (Encontrado != null) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Actualizar;
     private javax.swing.JButton AgregarNuevoUsuario;
     private javax.swing.JProgressBar BarraTiempo;
     private javax.swing.JTextField BilleteIngresado;
@@ -1233,6 +1349,7 @@ if (Encontrado != null) {
     private javax.swing.ButtonGroup ButtonGroupIngresar;
     private javax.swing.JLabel CarnetIngresar;
     private javax.swing.JPasswordField ContraIngresada;
+    private javax.swing.JButton CopiaInfo;
     private javax.swing.ButtonGroup FormatoTiempo;
     private javax.swing.JTextField IngresarCarnet;
     private javax.swing.JTextField IngresarNombre;
@@ -1241,6 +1358,7 @@ if (Encontrado != null) {
     private javax.swing.JPanel JpaneSalida;
     private javax.swing.JPanel JpanelAñadirUsuario;
     private javax.swing.JLabel LoginUsuario;
+    private javax.swing.JLabel MostrarGanancias;
     private javax.swing.JLabel NoPlaca;
     private javax.swing.JLabel NombreIngresar;
     private javax.swing.JComboBox<String> Pago;
@@ -1277,6 +1395,8 @@ if (Encontrado != null) {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel loginContra;

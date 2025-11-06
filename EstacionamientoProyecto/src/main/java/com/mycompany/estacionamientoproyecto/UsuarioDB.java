@@ -115,12 +115,7 @@ try (PreparedStatement ps = Conectado.prepareStatement(VerificarExistencia)) {
     ps.setString(1, Placa);
     try (ResultSet rs = ps.executeQuery()) {
         if (rs.next() && rs.getInt("Activos") > 0) {
-            JOptionPane.showMessageDialog(
-                null,
-                "Esta placa ya tiene un ticket activo.",
-                "Ticket Activo",
-                JOptionPane.INFORMATION_MESSAGE
-            );
+            JOptionPane.showMessageDialog(null,"Esta placa ya tiene un ticket activo.","Ticket Activo",JOptionPane.INFORMATION_MESSAGE);
             Conectado.rollback();
             return false; 
         }
@@ -166,7 +161,21 @@ try (PreparedStatement ps = Conectado.prepareStatement(VerificarExistencia)) {
                 }
             }
         }
-
+        
+        
+      if (!"variable".equalsIgnoreCase(modo)){
+    Transacciones tra=new Transacciones();
+    double cobrado=tra.planoCobro(Conectado,monto);
+    
+    if (cobrado==0){
+        Conectado.rollback();
+        return false;
+    }
+    monto=cobrado;
+}   
+      
+      
+      
         // actualizamos a ocupado
         try (PreparedStatement ps = Conectado.prepareStatement(ActualizarSpot)) {
             ps.setString(1, spotDisponible);
@@ -241,6 +250,7 @@ try (PreparedStatement ps = Conectado.prepareStatement(VerificarExistencia)) {
     
    public boolean RegistrarSalida(String ticketid){
     // Consultas SQL
+    
     String BuscarTicket="SELECT * FROM Ticket WHERE TicketID = ?";
     String ActualizarTicketSalida="UPDATE Ticket SET Fechasalida = ?, monto = ? WHERE TicketID = ?";
    
@@ -255,6 +265,9 @@ try (PreparedStatement ps = Conectado.prepareStatement(VerificarExistencia)) {
     LocalDateTime ingreso;
     double montoPrevio=0;
 
+    
+   String fechaSalida="";
+    
     // Buscar ticket existente
     try (PreparedStatement ps = Conectado.prepareStatement(BuscarTicket)){
         ps.setString(1, ticketid);
@@ -266,6 +279,7 @@ try (PreparedStatement ps = Conectado.prepareStatement(VerificarExistencia)) {
             SpotID=rs.getString("Spotid");
             modopago=rs.getString("modo");
             ingreso=LocalDateTime.parse(rs.getString("FechaIngreso"));
+            fechaSalida=rs.getString("FechaSalida");
             montoPrevio=rs.getDouble("monto");
             IdArea=rs.getString("IdArea");
         }
@@ -278,6 +292,12 @@ try (PreparedStatement ps = Conectado.prepareStatement(VerificarExistencia)) {
 
   
     if(modopago.equalsIgnoreCase("plano")){
+        if(fechaSalida!=null&&!fechaSalida.isEmpty()){
+        JOptionPane.showMessageDialog(null,"Ticket Expirado","INFORMACION",JOptionPane.INFORMATION_MESSAGE);
+           Conectado.rollback();
+           return false;
+        }
+        
         if(minutos>120) {
             nuevoMonto=montoPrevio;
             JOptionPane.showMessageDialog(null,"Ticket expirado-Supero las 2 horas","EXPIRADO",JOptionPane.WARNING_MESSAGE);
@@ -294,28 +314,31 @@ try (PreparedStatement ps = Conectado.prepareStatement(VerificarExistencia)) {
                 JOptionPane.showMessageDialog(null,"Spot en espera por 2 horas","MODO ESPERA",JOptionPane.INFORMATION_MESSAGE);
                 return true;
             }
+        
         }
 
+        
+        
     }else if(modopago.equalsIgnoreCase("variable")){
-        double tarifaHora=10.0;
-        double horas=minutos/60.0;
-        nuevoMonto=Math.ceil(horas)*tarifaHora;
-
-        double pago=solicitarPago(nuevoMonto);
-        if(pago<nuevoMonto){
-            JOptionPane.showMessageDialog(null,"Pago insuficiente","ERROR",JOptionPane.ERROR_MESSAGE);
+        Transacciones trans=new Transacciones();
+    
+        boolean exito=trans.cobrar(Conectado,minutos);
+         nuevoMonto=trans.getGanancia();
+    if(!exito){
+        try{
             Conectado.rollback();
-            return false;
+        }catch(SQLException e){
+            e.printStackTrace();
         }
-
-        double vuelto=pago-nuevoMonto;
-        if (vuelto>0){
-            JOptionPane.showMessageDialog(null, String.format("Pago recibido: Q%.2f\nVuelto: Q%.2f",pago,vuelto),"PAGO EXITOSO",JOptionPane.INFORMATION_MESSAGE);
-        }
+        return false;
+    }
 
         liberarSpotYActualizarArea(Conectado,SpotID,IdArea);
     }
 
+    
+    
+    
     // Actualizar salida
     try (PreparedStatement ps=Conectado.prepareStatement(ActualizarTicketSalida)) {
         ps.setString(1,salida.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
@@ -370,17 +393,21 @@ try (PreparedStatement ps = Conectado.prepareStatement(VerificarExistencia)) {
         long minutos=Duration.between(ingreso, ahora).toMinutes();
 
         if(minutos<=120){
-            int opcion= JOptionPane.showConfirmDialog(null," De 2 horas le quedan (" + minutos + " min).\n¿Desea reingresar con la misma placa?","REINGRESO",JOptionPane.YES_NO_OPTION);
+            int opcion= JOptionPane.showConfirmDialog(null," De 2 horas han pasodo (" + minutos + " min).\n¿Desea reingresar con la misma placa?","REINGRESO",JOptionPane.YES_NO_OPTION);
 
             if(opcion==JOptionPane.YES_OPTION){
                 try(PreparedStatement ps= Conectado.prepareStatement(actualizarSpot)){
                     ps.setString(1, SpotID);
                     ps.executeUpdate();
                 }
+                
                 Conectado.commit();
                 JOptionPane.showMessageDialog(null,"Reingreso exitoso. Spot marcado como ocupado.","REINGRESO",JOptionPane.INFORMATION_MESSAGE);
                 return true;
             }
+        }else{
+            
+            JOptionPane.showMessageDialog(null,"Su tiempo de reigresar se agoto, registrelo en la salida para finalizar el ticket","TIEMPO AGOTADO",JOptionPane.INFORMATION_MESSAGE);
         }
 
         Conectado.rollback();
@@ -469,18 +496,7 @@ private void verificarExpiracionEspera(String ticketID,String spotID,String idAr
 }
 
 
-private double solicitarPago(double montoRequerido){
-    String input=JOptionPane.showInputDialog(null, 
-        String.format("Monto a pagar: Q%.2f\nIngrese el monto:", montoRequerido), 
-        "PAGO", 
-        JOptionPane.QUESTION_MESSAGE);
-    
-    try{
-        return Double.parseDouble(input);
-    }catch (NumberFormatException e){
-        return 0;
-    }
-}
+
 
 private double obtenerMontoPlano(String ticketID, Connection Conectado)throws SQLException{
     String sql="SELECT monto FROM Ticket WHERE TicketID = ?";
@@ -560,8 +576,7 @@ private double obtenerMontoPlano(String ticketID, Connection Conectado)throws SQ
     
     public void datosEnTabla(JTable TablaParaVisualizar){
         
-        String Consulta="SELECT *FROM Ticket";
-        
+        String Consulta="SELECT * FROM Ticket WHERE substr(FechaIngreso, 1, 10) = date('now')";
         
         
         
@@ -572,13 +587,6 @@ private double obtenerMontoPlano(String ticketID, Connection Conectado)throws SQ
             
 
             ver.setRowCount(0);
-            
-            
-           
-            
-            
-            
-            
             
             
             
@@ -612,7 +620,31 @@ private double obtenerMontoPlano(String ticketID, Connection Conectado)throws SQ
     }
     
     
-    
+    public String DatosDeldia(){
+        double ganancias = 0;
+        int spot = 0;
+        
+        String consulta="SELECT GananciaTotal, SpotsUtilizados FROM Actividad WHERE Fecha = DATE('now')";
+        
+        try(Connection Conectado=basededatos.Conectar(); PreparedStatement ps=Conectado.prepareStatement(consulta)){
+            
+            ResultSet rs=ps.executeQuery();
+            if(rs.next()){
+                
+                ganancias=rs.getDouble("GananciaTotal");
+                spot=rs.getInt("SpotsUtilizados"); 
+            }
+            
+            return String.format("Ganancias: Q%.2f - Spots utilizados: %d", ganancias,spot);
+        }catch(SQLException e){
+            
+            JOptionPane.showMessageDialog(null,"Error en la busqueda "+e.getMessage(),"ERROR", JOptionPane.ERROR_MESSAGE);
+           return "ERROR AL OBTENER LOS DATOS";
+        }
+        
+        
+        
+    }
     
     
     
