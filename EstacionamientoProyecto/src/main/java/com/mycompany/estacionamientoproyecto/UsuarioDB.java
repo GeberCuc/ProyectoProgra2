@@ -91,11 +91,11 @@ String area="";
 
   String VerificarExistencia = "SELECT COUNT(*) AS Activos FROM Ticket WHERE Placa = ? AND Fechasalida IS NULL";
    
-    String VerificarCapacidad = "SELECT Capacidad FROM Areas WHERE Id = ?";
-    String BuscarSpotLibre = "SELECT PosicionID FROM Spots WHERE AreaID = ? AND Estado = 'libre' LIMIT 1";
-    String ActualizarSpot = "UPDATE Spots SET Estado='ocupado' WHERE PosicionID=?";
-    String RestarCapacidad = "UPDATE Areas SET Capacidad = Capacidad - 1 WHERE Id = ?";
-    String AgregarTicket = """
+    String VerificarCapacidad= "SELECT Capacidad FROM Areas WHERE Id = ?";
+    String BuscarSpotLibre= "SELECT PosicionID FROM Spots WHERE AreaID = ? AND Estado = 'libre' LIMIT 1";
+    String ActualizarSpot="UPDATE Spots SET Estado='ocupado' WHERE PosicionID=?";
+    String RestarCapacidad ="UPDATE Areas SET Capacidad = Capacidad - 1 WHERE Id = ?";
+    String AgregarTicket ="""
         INSERT INTO Ticket(TicketID, Placa, IdArea, Spotid, FechaIngreso, Fechasalida, modo, monto,TiempoPagado)
         VALUES(?,?,?,?,?,?,?,?,?)
     """;
@@ -576,7 +576,7 @@ private double obtenerMontoPlano(String ticketID, Connection Conectado)throws SQ
     
     public void datosEnTabla(JTable TablaParaVisualizar){
         
-        String Consulta="SELECT * FROM Ticket WHERE substr(FechaIngreso, 1, 10) = date('now')";
+        String Consulta="SELECT * FROM Ticket WHERE substr(FechaIngreso, 1, 10) =date('now')";
         
         
         

@@ -7,7 +7,9 @@ package com.mycompany.estacionamientoproyecto;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -171,6 +173,9 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         MostrarGanancias = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
+        Direccioncsv = new javax.swing.JTextField();
+        Seleccionar = new javax.swing.JButton();
+        EleccionSubirDatos = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -792,12 +797,11 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                         .addComponent(Actualizar))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(190, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(MostrarGanancias, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(368, 368, 368)
+                        .addComponent(MostrarGanancias, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -832,15 +836,37 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
 
         jTabbedPane1.addTab("Ver", jPanel3);
 
+        Seleccionar.setText("Seleccionar Archivo");
+        Seleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeleccionarActionPerformed(evt);
+            }
+        });
+
+        EleccionSubirDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Areacsv", "Spotscsv", "Vehiculoscsv", "Historialcsv", " " }));
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 838, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addComponent(Direccioncsv, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(EleccionSubirDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Seleccionar)
+                .addContainerGap(167, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 521, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Direccioncsv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seleccionar)
+                    .addComponent(EleccionSubirDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(433, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -1296,6 +1322,11 @@ if (Encontrado != null) {
          MostrarGanancias.setText(us.DatosDeldia());
     }//GEN-LAST:event_ActualizarActionPerformed
 
+    private void SeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarActionPerformed
+        JFileChooser Ventana= new JFileChooser();
+        LeerYGuardarCSV file= new LeerYGuardarCSV(Ventana,Direccioncsv);
+    }//GEN-LAST:event_SeleccionarActionPerformed
+
     
     
     
@@ -1350,6 +1381,8 @@ if (Encontrado != null) {
     private javax.swing.JLabel CarnetIngresar;
     private javax.swing.JPasswordField ContraIngresada;
     private javax.swing.JButton CopiaInfo;
+    private javax.swing.JTextField Direccioncsv;
+    private javax.swing.JComboBox<String> EleccionSubirDatos;
     private javax.swing.ButtonGroup FormatoTiempo;
     private javax.swing.JTextField IngresarCarnet;
     private javax.swing.JTextField IngresarNombre;
@@ -1374,6 +1407,7 @@ if (Encontrado != null) {
     private javax.swing.JTextField Reingreso;
     private javax.swing.JLabel SalidaTickeID;
     private javax.swing.JRadioButton SelecAdmin;
+    private javax.swing.JButton Seleccionar;
     private javax.swing.JRadioButton SelectEmpleado;
     private javax.swing.JTable TablaParaVisualizar;
     private javax.swing.JTextField TiempoVariable;
