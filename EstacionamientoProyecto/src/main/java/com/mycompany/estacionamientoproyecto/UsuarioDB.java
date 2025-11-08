@@ -32,7 +32,7 @@ public class UsuarioDB {
             try(PreparedStatement Consulta=Conectado.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS) ){
             
             Consulta.setString(1,usuariodb.getNombre());
-            Consulta.setInt(2,usuariodb.getCarnet());
+            Consulta.setLong(2,usuariodb.getCarnet());
             
   
             //Esto es lo que realmente sube los datos 
@@ -76,9 +76,10 @@ public class UsuarioDB {
     
     
     
-   public boolean AsignarSpot(String Placa,String idarea,String modo,double monto,String vehiculo,double tiempo){
-       
-String area="";
+    
+    public String area (String vehiculo,String idarea){
+        
+        String area="";
     if("automovil".equalsIgnoreCase(vehiculo)&&"ESTUDIANTE".equalsIgnoreCase(idarea)) {
         area="A1";
     } else if("moto".equalsIgnoreCase(vehiculo)&&"ESTUDIANTE".equalsIgnoreCase(idarea)) {
@@ -88,6 +89,16 @@ String area="";
     } else if("moto".equalsIgnoreCase(vehiculo)&&"CATEDRATICO".equalsIgnoreCase(idarea)) {
         area="A4";
     }
+        
+        
+        return area;
+    }
+    
+    
+    
+   public boolean AsignarSpot(String Placa,String idarea,String modo,double monto,String vehiculo,double tiempo){
+       
+   String area=area(vehiculo, idarea);
 
   String VerificarExistencia = "SELECT COUNT(*) AS Activos FROM Ticket WHERE Placa = ? AND Fechasalida IS NULL";
    
@@ -208,15 +219,7 @@ try (PreparedStatement ps = Conectado.prepareStatement(VerificarExistencia)) {
         //finalizamos 
         Conectado.commit();
 
-        JOptionPane.showMessageDialog(
-                null,
-                "Ticket generado con éxito:\n" +
-                "Ticket: " + ticketid + "\n" +
-                "Area: " + area + "\n" +
-                "Spot: " + spotDisponible,
-                "ASIGNACIoN EXITOSA",
-                JOptionPane.INFORMATION_MESSAGE
-        );
+        JOptionPane.showMessageDialog(null, "Ticket generado con éxito:\n" +"Ticket: " + ticketid + "\n" +"Area: " + area + "\n" +"Spot: " + spotDisponible,"ASIGNACIoN EXITOSA",JOptionPane.INFORMATION_MESSAGE  );
 
         return true;
         
@@ -225,12 +228,7 @@ try (PreparedStatement ps = Conectado.prepareStatement(VerificarExistencia)) {
             if (Conectado != null) Conectado.rollback();
         } catch (SQLException ignored) { }
 
-        JOptionPane.showMessageDialog(
-                null,
-                "Error al asignar spot o guardar ticket:\n" + e.getMessage(),
-                "ERROR SQL",
-                JOptionPane.ERROR_MESSAGE
-        );
+        JOptionPane.showMessageDialog( null,"Error al asignar spot o guardar ticket:\n" + e.getMessage(),  "ERROR SQL",JOptionPane.ERROR_MESSAGE );
         return false;
 
     } finally {
@@ -292,52 +290,52 @@ try (PreparedStatement ps = Conectado.prepareStatement(VerificarExistencia)) {
 
   
     if(modopago.equalsIgnoreCase("plano")){
-        if(fechaSalida!=null&&!fechaSalida.isEmpty()){
+    if(fechaSalida!= null&&!fechaSalida.isEmpty()){
         JOptionPane.showMessageDialog(null,"Ticket Expirado","INFORMACION",JOptionPane.INFORMATION_MESSAGE);
-           Conectado.rollback();
-           return false;
+        Conectado.rollback();
+        return false;
+    }
+
+    if(minutos>120){
+        if (spotEnEspera(Conectado, SpotID)) {
+            nuevoMonto = montoPrevio;
+            JOptionPane.showMessageDialog(null,"Ticket expirado (spot estaba en espera).","EXPIRADO",JOptionPane.WARNING_MESSAGE);
+            liberarSpotYActualizarArea(Conectado,SpotID,IdArea);
+        } else {
+            nuevoMonto=montoPrevio; 
         }
-        
-        if(minutos>120) {
+    }else{
+        int opcion = JOptionPane.showConfirmDialog(null,"¿Sale definitivamente?\nTiempo transcurrido: "+minutos+" minutos","Salida Modo Plano", JOptionPane.YES_NO_OPTION);
+
+        if(opcion==JOptionPane.YES_OPTION){
             nuevoMonto=montoPrevio;
-            JOptionPane.showMessageDialog(null,"Ticket expirado-Supero las 2 horas","EXPIRADO",JOptionPane.WARNING_MESSAGE);
             liberarSpotYActualizarArea(Conectado,SpotID,IdArea);
         }else{
-            int opcion=JOptionPane.showConfirmDialog(null,"¿Sale definitivamente?\nTiempo transcurrido: "+minutos+" minutos","Salida Modo Plano",JOptionPane.YES_NO_OPTION);
-
-            if(opcion==JOptionPane.YES_OPTION) {
-                nuevoMonto=montoPrevio;
-                liberarSpotYActualizarArea(Conectado,SpotID,IdArea);
-            }else{
-                iniciarModoEspera(ticketid,SpotID,IdArea,Conectado);
-                Conectado.commit();
-                JOptionPane.showMessageDialog(null,"Spot en espera por 2 horas","MODO ESPERA",JOptionPane.INFORMATION_MESSAGE);
-                return true;
-            }
-        
+            iniciarModoEspera(ticketid,SpotID,IdArea,Conectado);
+            Conectado.commit();
+            JOptionPane.showMessageDialog(null,"Spot en espera por 2 horas","MODO ESPERA",JOptionPane.INFORMATION_MESSAGE);
+            return true;
         }
+    }
 
-        
-        
-    }else if(modopago.equalsIgnoreCase("variable")){
-        Transacciones trans=new Transacciones();
-    
-        boolean exito=trans.cobrar(Conectado,minutos);
-         nuevoMonto=trans.getGanancia();
+}else if(modopago.equalsIgnoreCase("variable")) {
+    Transacciones trans=new Transacciones();
+
+    boolean exito=trans.cobrar(Conectado, minutos);
+    nuevoMonto=trans.getGanancia();
+
     if(!exito){
         try{
             Conectado.rollback();
-        }catch(SQLException e){
+        }catch(SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
+    liberarSpotYActualizarArea(Conectado, SpotID, IdArea);
+}
 
-        liberarSpotYActualizarArea(Conectado,SpotID,IdArea);
-    }
-
-    
-    
+       
     
     // Actualizar salida
     try (PreparedStatement ps=Conectado.prepareStatement(ActualizarTicketSalida)) {
@@ -424,6 +422,19 @@ try (PreparedStatement ps = Conectado.prepareStatement(VerificarExistencia)) {
     }
 }
    
+   private boolean spotEnEspera(Connection con,String spotId)throws SQLException {
+    String sql="SELECT Estado FROM Spots WHERE PosicionID=?";
+    try (PreparedStatement ps=con.prepareStatement(sql)){
+        ps.setString(1, spotId);
+        try(ResultSet rs=ps.executeQuery()){
+            if(rs.next()){
+                String estado=rs.getString("Estado");
+                return estado!=null&& estado.equalsIgnoreCase("ESPERA");
+            }
+        }
+    }
+    return false;
+}
   
    
    
@@ -471,44 +482,31 @@ private void verificarExpiracionEspera(String ticketID,String spotID,String idAr
         Conectado=basededatos.Conectar();
         Conectado.setAutoCommit(false);
         
-        // Verificar si el spot sigue en espera
+        
         String checkSQL="SELECT Estado FROM Spots WHERE PosicionID = ?";
         
-        try(PreparedStatement ps = Conectado.prepareStatement(checkSQL)){
+        try(PreparedStatement ps=Conectado.prepareStatement(checkSQL)){
             ps.setString(1,spotID); 
             ResultSet rs=ps.executeQuery();
             
-            if (rs.next() && "espera".equals(rs.getString("Estado"))) {
+            if(rs.next()&&"espera".equals(rs.getString("Estado"))) {
               
                 liberarSpotYActualizarArea(Conectado,spotID,idArea);
             }
         }
         
         Conectado.commit();
-    }catch (SQLException e){
+    }catch(SQLException e){
         try{
-            if(Conectado !=null)Conectado.rollback();
-        }catch(SQLException ex){}
+            if(Conectado!=null)Conectado.rollback();
+        }catch(SQLException ex){
+        }
         e.printStackTrace();
     }finally{
         basededatos.cerrar(Conectado);
     }
 }
 
-
-
-
-private double obtenerMontoPlano(String ticketID, Connection Conectado)throws SQLException{
-    String sql="SELECT monto FROM Ticket WHERE TicketID = ?";
-    try(PreparedStatement ps = Conectado.prepareStatement(sql)){
-        ps.setString(1,ticketID);
-        ResultSet rs=ps.executeQuery();
-        return rs.next() ? rs.getDouble("monto") : 0;
-    }
-}
-
-
-   
    
     
   public Vehiculo BuscarPorPlaca(String Buscado){
@@ -550,12 +548,9 @@ private double obtenerMontoPlano(String ticketID, Connection Conectado)throws SQ
     
   
   
+
   
-  
-  
-  
-  
-    private String GenerarTicket(Connection Conectado)throws SQLException {
+    public String GenerarTicket(Connection Conectado)throws SQLException {
         
         String consulta = "SELECT TicketID FROM Ticket ORDER BY TicketID DESC LIMIT 1";
         try (PreparedStatement ps = Conectado.prepareStatement(consulta);
@@ -576,7 +571,7 @@ private double obtenerMontoPlano(String ticketID, Connection Conectado)throws SQ
     
     public void datosEnTabla(JTable TablaParaVisualizar){
         
-        String Consulta="SELECT * FROM Ticket WHERE substr(FechaIngreso, 1, 10) =date('now')";
+        String Consulta="SELECT * FROM Ticket WHERE substr(FechaIngreso, 1, 10) =date('now','localtime')";
         
         
         
@@ -624,7 +619,7 @@ private double obtenerMontoPlano(String ticketID, Connection Conectado)throws SQ
         double ganancias = 0;
         int spot = 0;
         
-        String consulta="SELECT GananciaTotal, SpotsUtilizados FROM Actividad WHERE Fecha = DATE('now')";
+        String consulta="SELECT GananciaTotal, SpotsUtilizados FROM Actividad WHERE Fecha = DATE('now','localtime')";
         
         try(Connection Conectado=basededatos.Conectar(); PreparedStatement ps=Conectado.prepareStatement(consulta)){
             

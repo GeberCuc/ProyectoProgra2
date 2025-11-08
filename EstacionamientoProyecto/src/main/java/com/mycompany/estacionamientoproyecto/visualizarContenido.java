@@ -41,7 +41,7 @@ public class visualizarContenido extends javax.swing.JFrame {
         UsuarioDB us=new UsuarioDB();
         us.datosEnTabla(TablaParaVisualizar);
         MostrarGanancias.setText(us.DatosDeldia());
-        
+        pestañas.setVisible(false);
 
        
         
@@ -123,7 +123,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         BarraTiempo = new javax.swing.JProgressBar();
         butSalir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        pestañas = new javax.swing.JTabbedPane();
         PanelFunciones = new javax.swing.JPanel();
         PanelIngresarDatos = new javax.swing.JPanel();
         NoPlaca = new javax.swing.JLabel();
@@ -545,26 +545,30 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                 .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
                         .addGap(97, 97, 97)
-                        .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
-                                .addComponent(ButAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ButMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
-                                .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(NombreIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CarnetIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(PlacaIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(IngresarNombre)
-                                    .addComponent(IngresarCarnet)
-                                    .addComponent(IngresarPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)))))
+                        .addComponent(ButAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ButMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
                         .addGap(167, 167, 167)
-                        .addComponent(AgregarNuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(AgregarNuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
+                        .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(JpanelAñadirUsuarioLayout.createSequentialGroup()
+                                .addGap(85, 85, 85)
+                                .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CarnetIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(PlacaIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(31, 31, 31))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpanelAñadirUsuarioLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(NombreIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(IngresarNombre)
+                            .addComponent(IngresarCarnet)
+                            .addComponent(IngresarPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))))
                 .addContainerGap(90, Short.MAX_VALUE))
         );
         JpanelAñadirUsuarioLayout.setVerticalGroup(
@@ -575,9 +579,9 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                     .addComponent(NombreIngresar)
                     .addComponent(IngresarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CarnetIngresar)
-                    .addComponent(IngresarCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(IngresarCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CarnetIngresar))
                 .addGap(17, 17, 17)
                 .addGroup(JpanelAñadirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PlacaIngresar)
@@ -679,7 +683,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                 .addContainerGap(76, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Ingreso", PanelFunciones);
+        pestañas.addTab("Ingreso", PanelFunciones);
 
         SalidaTickeID.setText("Ingrese ticket Id");
 
@@ -732,7 +736,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                 .addContainerGap(288, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Salida", JpaneSalida);
+        pestañas.addTab("Salida", JpaneSalida);
 
         TablaParaVisualizar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -834,7 +838,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                 .addContainerGap(116, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Ver", jPanel3);
+        pestañas.addTab("Ver", jPanel3);
 
         Seleccionar.setText("Seleccionar Archivo");
         Seleccionar.addActionListener(new java.awt.event.ActionListener() {
@@ -844,6 +848,11 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         });
 
         EleccionSubirDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Areacsv", "Spotscsv", "Vehiculoscsv", "Historialcsv", " " }));
+        EleccionSubirDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EleccionSubirDatosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -886,7 +895,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                 .addContainerGap(249, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Cargar", jPanel5);
+        pestañas.addTab("Cargar", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -897,7 +906,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pestañas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -906,13 +915,13 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                 .addContainerGap()
                 .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pestañas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
 
-        jTabbedPane1.getAccessibleContext().setAccessibleName("Ingresar");
+        pestañas.getAccessibleContext().setAccessibleName("Ingresar");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -927,7 +936,8 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         String Usuario=UsuarioIngresado.getText();
         char[] contraseña=ContraIngresada.getPassword();
        
-        VerificarContraseña VC=new VerificarContraseña(Usuario,contraseña,PanelFunciones, PanelLogin, UsuarioIngresado, ContraIngresada, IniciarSesion, TxtEspera, BarraTiempo,ButtGrupoLogin,JpanelAñadirUsuario);
+        VerificarContraseña VC=new VerificarContraseña(Usuario,contraseña,PanelFunciones, PanelLogin, UsuarioIngresado, ContraIngresada, IniciarSesion, 
+                TxtEspera, BarraTiempo,ButtGrupoLogin,JpanelAñadirUsuario,pestañas);
        
       
         VC.verificar();
@@ -961,8 +971,8 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
      
         //obteniendo datos
        String Nombre=IngresarNombre.getText();
-       int Carnet=Integer.parseInt(IngresarCarnet.getText());
-       String Placa=IngresarPlaca.getText(); 
+       long Carnet=Long.parseLong(IngresarCarnet.getText());
+       String Placa=IngresarPlaca.getText().toUpperCase(); 
       String Tipo;
        if(ButAuto.isSelected()){
           
@@ -1325,7 +1335,32 @@ if (Encontrado != null) {
     private void SeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarActionPerformed
         JFileChooser Ventana= new JFileChooser();
         LeerYGuardarCSV file= new LeerYGuardarCSV(Ventana,Direccioncsv);
+        
+       switch(EleccionSubirDatos.getSelectedIndex()){
+        
+           case 0: {
+               file.ObtenerDireccion(0);
+               break;}
+           case 1: {
+               file.ObtenerDireccion(1);
+               break;}
+           case 2:{               
+               file.ObtenerDireccion(2);
+               
+               break;}
+           case 3:{
+               file.ObtenerDireccion(3);
+               break;
+           }
+    }
+        
+        
+        
     }//GEN-LAST:event_SeleccionarActionPerformed
+
+    private void EleccionSubirDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EleccionSubirDatosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EleccionSubirDatosActionPerformed
 
     
     
@@ -1432,9 +1467,9 @@ if (Encontrado != null) {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel loginContra;
     private javax.swing.JRadioButton motoautoingresado;
+    private javax.swing.JTabbedPane pestañas;
     private javax.swing.JLabel txtpago;
     // End of variables declaration//GEN-END:variables
 }

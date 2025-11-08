@@ -47,7 +47,7 @@ public class Transacciones {
   
   public void AgregarFecha(Connection Conectado){
       
-      String sql="INSERT OR IGNORE INTO Actividad (Fecha) VALUES (DATE('now'))";
+      String sql="INSERT OR IGNORE INTO Actividad (Fecha) VALUES (DATE('now','localtime'))";
      
       try( PreparedStatement ps=Conectado.prepareStatement(sql)){
           
@@ -67,7 +67,7 @@ public class Transacciones {
   public void GuardaGanancias(Connection Conectado,double Total){
       
      
-      String SubirDatos="UPDATE Actividad SET GananciaTotal=GananciaTotal+?, SpotsUtilizados=SpotsUtilizados+1 WHERE Fecha= DATE('now')";
+      String SubirDatos="UPDATE Actividad SET GananciaTotal=GananciaTotal+?, SpotsUtilizados=SpotsUtilizados+1 WHERE Fecha= DATE('now','localtime')";
        AgregarFecha(Conectado);
       try(PreparedStatement ps=Conectado.prepareStatement(SubirDatos)){
           

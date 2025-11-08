@@ -13,7 +13,7 @@ public class Usuario {
         this.Nombre = Nombre;
     }
 
-    public int getCarnet() {
+    public long getCarnet() {
         return Carnet;
     }
 
@@ -32,13 +32,13 @@ public class Usuario {
    
   private int UsuarioID;
   private String Nombre;
-  private int Carnet;
+  private long Carnet;
   private Vehiculo vehiculoUs;
  
     
   
 
-   public Usuario(int UsuarioID,String nombre,int carnet, Vehiculo vehiculoUs){
+   public Usuario(int UsuarioID,String nombre,long carnet, Vehiculo vehiculoUs){
        
        this.Nombre=nombre;
        this.Carnet=carnet;
