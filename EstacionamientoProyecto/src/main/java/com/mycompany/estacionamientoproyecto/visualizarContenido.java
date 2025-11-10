@@ -39,7 +39,7 @@ public class visualizarContenido extends javax.swing.JFrame {
         
         //ocultar
         UsuarioDB us=new UsuarioDB();
-        us.datosEnTabla(TablaParaVisualizar);
+      
         MostrarGanancias.setText(us.DatosDeldia());
         pestañas.setVisible(false);
 
@@ -171,6 +171,9 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         CopiaInfo = new javax.swing.JButton();
         Actualizar = new javax.swing.JButton();
         MostrarGanancias = new javax.swing.JLabel();
+        verT = new javax.swing.JComboBox<>();
+        busquedayrescatexd = new javax.swing.JTextField();
+        buscarw = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         Direccioncsv = new javax.swing.JTextField();
@@ -788,6 +791,10 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
 
         MostrarGanancias.setText("jLabel3");
 
+        verT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todo", "Hoy" }));
+
+        buscarw.setText("Buscar");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -798,14 +805,21 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                         .addGap(24, 24, 24)
                         .addComponent(CopiaInfo)
                         .addGap(18, 18, 18)
-                        .addComponent(Actualizar))
+                        .addComponent(Actualizar)
+                        .addGap(18, 18, 18)
+                        .addComponent(verT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(busquedayrescatexd, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buscarw))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(368, 368, 368)
-                        .addComponent(MostrarGanancias, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(167, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(190, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(MostrarGanancias, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -815,7 +829,10 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CopiaInfo)
-                    .addComponent(Actualizar))
+                    .addComponent(Actualizar)
+                    .addComponent(verT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(busquedayrescatexd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarw))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(125, 125, 125))
@@ -828,7 +845,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1327,8 +1344,19 @@ if (Encontrado != null) {
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
        
         UsuarioDB us=new UsuarioDB();
-       
-        us.datosEnTabla(TablaParaVisualizar);
+       String sql="";
+        if(verT.getSelectedItem().equals("Hoy")){
+           sql="SELECT * FROM Ticket WHERE substr(FechaIngreso, 1, 10) =date('now','localtime')";
+        }else if(verT.getSelectedItem().equals("Todo")){
+            
+       sql="SELECT *FROM Ticket";
+            
+        }
+        
+ 
+        
+        
+        us.datosEnTabla(TablaParaVisualizar,sql);
          MostrarGanancias.setText(us.DatosDeldia());
     }//GEN-LAST:event_ActualizarActionPerformed
 
@@ -1453,6 +1481,8 @@ if (Encontrado != null) {
     private javax.swing.JRadioButton autoautoingresado;
     private javax.swing.JLabel aviso;
     private javax.swing.JLabel bienvenida;
+    private javax.swing.JButton buscarw;
+    private javax.swing.JTextField busquedayrescatexd;
     private javax.swing.JButton butSalir;
     private javax.swing.JButton buttRegresar;
     private javax.swing.JButton generarImpresion;
@@ -1471,5 +1501,6 @@ if (Encontrado != null) {
     private javax.swing.JRadioButton motoautoingresado;
     private javax.swing.JTabbedPane pestañas;
     private javax.swing.JLabel txtpago;
+    private javax.swing.JComboBox<String> verT;
     // End of variables declaration//GEN-END:variables
 }

@@ -569,9 +569,7 @@ private void verificarExpiracionEspera(String ticketID,String spotID,String idAr
     
     
     
-    public void datosEnTabla(JTable TablaParaVisualizar){
-        
-        String Consulta="SELECT * FROM Ticket WHERE substr(FechaIngreso, 1, 10) =date('now','localtime')";
+    public void datosEnTabla(JTable TablaParaVisualizar,String Consulta){
         
         
         
@@ -615,31 +613,56 @@ private void verificarExpiracionEspera(String ticketID,String spotID,String idAr
     }
     
     
-    public String DatosDeldia(){
-        double ganancias = 0;
-        int spot = 0;
-        
-        String consulta="SELECT GananciaTotal, SpotsUtilizados FROM Actividad WHERE Fecha = DATE('now','localtime')";
-        
-        try(Connection Conectado=basededatos.Conectar(); PreparedStatement ps=Conectado.prepareStatement(consulta)){
-            
-            ResultSet rs=ps.executeQuery();
+    public String DatosDeldia() {
+    double ganancias=0;
+    int hoy=0;
+    int spotTotal=0;
+    int spotOcupados=0;
+    
+    String consulta="SELECT GananciaTotal, SpotsUtilizados FROM Actividad WHERE Fecha = DATE('now','localtime')";
+    String consultaTotal="SELECT COUNT(*) FROM Spots"; 
+       String consultaOcupados="SELECT COUNT(*) FROM Spots WHERE Estado IN ('ocupado','espera')";
+    try(Connection Conectado=basededatos.Conectar()){
+
+      
+        try (PreparedStatement ps=Conectado.prepareStatement(consulta);
+             ResultSet rs=ps.executeQuery()) {
+
             if(rs.next()){
-                
                 ganancias=rs.getDouble("GananciaTotal");
-                spot=rs.getInt("SpotsUtilizados"); 
+                hoy=rs.getInt("SpotsUtilizados");
             }
-            
-            return String.format("Ganancias: Q%.2f - Spots utilizados: %d", ganancias,spot);
-        }catch(SQLException e){
-            
-            JOptionPane.showMessageDialog(null,"Error en la busqueda "+e.getMessage(),"ERROR", JOptionPane.ERROR_MESSAGE);
-           return "ERROR AL OBTENER LOS DATOS";
+        }
+
+     
+        try(PreparedStatement ps2=Conectado.prepareStatement(consultaTotal);
+             ResultSet rs2=ps2.executeQuery()) {
+            if (rs2.next()){
+                spotTotal=rs2.getInt(1);
+            }
         }
         
         
         
+         try(PreparedStatement ps3=Conectado.prepareStatement(consultaOcupados);
+             ResultSet rs3=ps3.executeQuery()) {
+            if (rs3.next()){
+                spotOcupados=rs3.getInt(1);
+            }
+        
+
+        }
+      return String.format(
+            "Ganancias: Q%.2f - Spots utilizados hoy: %d - Ocupados actualmente: %d / %d",ganancias,hoy, spotOcupados, spotTotal );
+    }catch(SQLException e){
+        JOptionPane.showMessageDialog(null, "Error en la búsqueda: " + e.getMessage(),"ERROR", JOptionPane.ERROR_MESSAGE);
+        return "ERROR AL OBTENER LOS DATOS";
     }
+}
+        
+        
+        
+    
     
     
     

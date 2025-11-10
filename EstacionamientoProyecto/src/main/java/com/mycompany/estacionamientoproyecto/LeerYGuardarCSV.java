@@ -88,7 +88,9 @@ public class LeerYGuardarCSV {
                         break;
                     }
                     case 1:{
-                        JOptionPane.showMessageDialog(null,"EN DESARROLLO");
+                       String []datosSpot= reorganizarSpot(info);
+                       subirSpot(datosSpot);
+                            registro++;
                         break;
                     }
                     case 2: { 
@@ -358,6 +360,107 @@ private void subirVehiculo(String []VehiculoData){
     
     
     
+public String [] reorganizarSpot(String [] info){
+
+
+String []datons=new String[4];
+
+
+try{
+    
+   datons[0]=info[0].trim();
+    
+   String spot=info[1].trim();
+   
+   
+   datons[1]=messirve(spot);
+   
+  String vehiculo=info[2].trim();
+  datons[2]=caambiooo(vehiculo);
+    
+  
+  
+  String libresiono=info[3].trim();
+  
+  if(libresiono.equalsIgnoreCase("FREE")||libresiono.equalsIgnoreCase("AVAILABLE")){
+      
+      datons[3]="libre";
+      
+  }else if(libresiono.equalsIgnoreCase("OCCUPIED")||libresiono.equalsIgnoreCase("TAKEN")){
+      
+       datons[3]="ocupado";
+  }else{
+      
+       datons[3]="espera";
+      
+  }
+  
+  
+  
+  
+}catch(Exception e){
+    
+    JOptionPane.showMessageDialog(null,"Error"+e.getMessage(),"ERROR", 0);
+}
+
+return datons;
+
+}
+
+public void subirSpot(String [] data){
+    
+    
+    String sql="INSERT INTO Spots (PosicionID,AreaID,Tipo_vehiculo,Estado) VALUES(?,?,?,?)";
+    String sql2="UPDATE Areas SET Capacidad=Capacidad+1 WHERE id=?";
+   
+    
+    try(Connection Conectado=basededatos.Conectar()){
+         String Spotid=data[1];
+         Conectado.setAutoCommit(false);
+         
+        try(PreparedStatement ps=Conectado.prepareStatement(sql)){
+            
+            ps.setString(1,data[0]);
+            ps.setString(2,data[1]);
+            ps.setString(3,data[2]);
+            ps.setString(4,data[3]);
+          ps.executeUpdate();
+        }
+        
+        try(PreparedStatement p=Conectado.prepareStatement(sql2)){
+            
+            p.setString(1, Spotid);
+            p.executeUpdate();
+        }
+        
+        Conectado.commit();
+    }catch(SQLException e){
+        
+        JOptionPane.showMessageDialog(null,"ERROR"+e.getMessage(),"ERROR", 0);
+        
+    }
+    
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     
    public boolean SubirInformacion(Connection Conectado, String[] Data) {
