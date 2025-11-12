@@ -662,8 +662,52 @@ private void verificarExpiracionEspera(String ticketID,String spotID,String idAr
         
         
         
-    
-    
+    public void buscarPorTicket(String Buscado, JTable T){
+          
+      
+          
+      String ComandoSql="SELECT * FROM Ticket WHERE TicketID= ?";
+          
+      
+      try(Connection Conectado=basededatos.Conectar();PreparedStatement stm=Conectado.prepareStatement(ComandoSql)){
+          
+          stm.setString(1, Buscado);
+          DefaultTableModel ver=(DefaultTableModel)T.getModel();
+            
+
+            ver.setRowCount(0);
+            
+            ResultSet rs=stm.executeQuery();
+            
+            while(rs.next()){
+                
+                  Object [] datos={
+                      
+                      rs.getString("TicketID"),
+                      rs.getString("Placa"),
+                      rs.getString("IdArea"),
+                      rs.getString("Spotid"),
+                      rs.getString("FechaIngreso"),
+                      rs.getString("FechaSalida"),
+                      rs.getString("modo"),
+                      rs.getString("monto"),
+                      rs.getString("TiempoPagado")
+                  
+                  }; 
+            
+                  ver.addRow(datos);
+                  
+            }
+          
+      }catch(SQLException s){
+          JOptionPane.showMessageDialog(null,"Error en la busqueda "+s.getMessage(),"ERROR", JOptionPane.ERROR_MESSAGE);
+          
+      }
+      
+          
+          
+      }   
+  
     
     
     

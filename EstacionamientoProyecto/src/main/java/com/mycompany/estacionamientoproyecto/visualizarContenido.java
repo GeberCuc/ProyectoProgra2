@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -174,6 +175,8 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         verT = new javax.swing.JComboBox<>();
         busquedayrescatexd = new javax.swing.JTextField();
         buscarw = new javax.swing.JButton();
+        Exportar = new javax.swing.JButton();
+        Mapa = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         Direccioncsv = new javax.swing.JTextField();
@@ -220,6 +223,11 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         butSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 butSalirMouseClicked(evt);
+            }
+        });
+        butSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butSalirActionPerformed(evt);
             }
         });
 
@@ -794,16 +802,41 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         verT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todo", "Hoy" }));
 
         buscarw.setText("Buscar");
+        buscarw.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarwActionPerformed(evt);
+            }
+        });
+
+        Exportar.setText("Exportar a CSV");
+        Exportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportarActionPerformed(evt);
+            }
+        });
+
+        Mapa.setText("Mapa");
+        Mapa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MapaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(190, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Mapa)
+                    .addComponent(CopiaInfo))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(CopiaInfo)
                         .addGap(18, 18, 18)
                         .addComponent(Actualizar)
                         .addGap(18, 18, 18)
@@ -811,28 +844,30 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                         .addGap(24, 24, 24)
                         .addComponent(busquedayrescatexd, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(buscarw))
+                        .addComponent(buscarw)
+                        .addGap(34, 34, 34)
+                        .addComponent(Exportar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(190, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(MostrarGanancias, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(MostrarGanancias, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(MostrarGanancias, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MostrarGanancias, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(Mapa))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CopiaInfo)
                     .addComponent(Actualizar)
                     .addComponent(verT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(busquedayrescatexd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscarw))
+                    .addComponent(buscarw)
+                    .addComponent(Exportar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(125, 125, 125))
@@ -1390,6 +1425,58 @@ if (Encontrado != null) {
         // TODO add your handling code here:
     }//GEN-LAST:event_EleccionSubirDatosActionPerformed
 
+    private void buscarwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarwActionPerformed
+  
+        
+        
+       String Buscado= busquedayrescatexd.getText();
+        UsuarioDB us=new UsuarioDB();
+        us.buscarPorTicket(Buscado,TablaParaVisualizar);
+        
+        
+    }//GEN-LAST:event_buscarwActionPerformed
+
+    private void ExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportarActionPerformed
+         
+        JFileChooser almacenarD= new JFileChooser();
+       almacenarD.setDialogTitle("Selecciona la carpeta donde guardar el archivo");
+    almacenarD.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); // solo carpetas
+    almacenarD.setAcceptAllFileFilterUsed(false);
+
+    int seleccion=almacenarD.showOpenDialog(null);
+
+    if(seleccion==JFileChooser.APPROVE_OPTION){
+        File carpeta=almacenarD.getSelectedFile();
+
+        
+        String nombreArchivo="tickets_" + System.currentTimeMillis() +".csv";
+        String dir=carpeta.getAbsolutePath() + File.separator+nombreArchivo;
+
+        
+        exportar ex=new exportar();
+        ex.ticket(dir);
+
+        JOptionPane.showMessageDialog(null,"Archivo exportado correctamente en:\n"+dir,"Exportación exitosa",JOptionPane.INFORMATION_MESSAGE);
+
+    } else {
+        JOptionPane.showMessageDialog(null,"Exportación cancelada.");
+    }
+
+       
+
+    }//GEN-LAST:event_ExportarActionPerformed
+
+    private void MapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MapaActionPerformed
+        
+        
+         SwingUtilities.invokeLater(() -> new VistaMapa());
+        
+    }//GEN-LAST:event_MapaActionPerformed
+
+    private void butSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_butSalirActionPerformed
+
     
     
     
@@ -1446,6 +1533,7 @@ if (Encontrado != null) {
     private javax.swing.JButton CopiaInfo;
     private javax.swing.JTextField Direccioncsv;
     private javax.swing.JComboBox<String> EleccionSubirDatos;
+    private javax.swing.JButton Exportar;
     private javax.swing.ButtonGroup FormatoTiempo;
     private javax.swing.JTextField IngresarCarnet;
     private javax.swing.JTextField IngresarNombre;
@@ -1454,6 +1542,7 @@ if (Encontrado != null) {
     private javax.swing.JPanel JpaneSalida;
     private javax.swing.JPanel JpanelAñadirUsuario;
     private javax.swing.JLabel LoginUsuario;
+    private javax.swing.JButton Mapa;
     private javax.swing.JLabel MostrarGanancias;
     private javax.swing.JLabel NoPlaca;
     private javax.swing.JLabel NombreIngresar;

@@ -84,7 +84,12 @@ public class LeerYGuardarCSV {
                 if(info.length>=3){  
                 switch (tipoArchivo) {
                     case 0: {
-                         JOptionPane.showMessageDialog(null,"EN DESARROLLO");
+                         
+                        String[] dat=AreaReorganizr(info);
+                        SubirArea(dat);
+                        registro++;
+                        
+                        
                         break;
                     }
                     case 1:{
@@ -446,6 +451,61 @@ public void subirSpot(String [] data){
 }
 
 
+
+
+public String [] AreaReorganizr(String [] info){
+    
+    String [] data= new String[2];
+    
+    
+    try{
+        
+        
+        
+        String area= info[0].trim();
+        data[0]=messirve(area);
+   
+        data[1]=info[2].trim();
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }catch(Exception e){
+        
+        JOptionPane.showMessageDialog(null,"ERROR"+e.getMessage(),"ERROR", 0);
+    }
+    
+
+    return data;
+}
+
+
+
+public void SubirArea(String []s){
+    
+    
+    String sql="UPDATE Areas SET Capacidad = Capacidad + ? WHERE Id = ?";
+    
+    try(Connection Conectado=basededatos.Conectar(); PreparedStatement ps=Conectado.prepareStatement(sql)){
+        
+        ps.setString(1,s[1]);
+        ps.setString(2, s[0]);
+        ps.executeUpdate();
+
+        
+        System.out.println(s[0]);
+        System.out.println(s[1]);
+    }catch(SQLException e){
+           JOptionPane.showMessageDialog(null,"ERROR"+e.getMessage(),"ERROR", 0);
+    }
+    
+  
+}
 
 
 

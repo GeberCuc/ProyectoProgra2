@@ -11,7 +11,7 @@ public class IngresarDatos {
     private String Placa;
     private String Modelo;
     private int tiempo;
-   private  final ButtonGroup ButtonGroupIngresar;
+    private  final ButtonGroup ButtonGroupIngresar;
     
     
     
