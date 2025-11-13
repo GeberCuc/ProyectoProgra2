@@ -219,6 +219,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="IniciarSesion">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="68" green="66" red="64" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Iniciar sesion"/>
           </Properties>
           <Events>

@@ -29,15 +29,7 @@ public class visualizarContenido extends javax.swing.JFrame {
         initComponents();
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
+  
         //ocultar
         UsuarioDB us=new UsuarioDB();
       
@@ -73,28 +65,12 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
 });
     }
 
-    
-    
-    
-    
-    
-    
-    
     private void centrarPanel(JPanel panel) {
     int x = (getWidth() - panel.getWidth()) / 2;
     int y = (getHeight() - panel.getHeight()) / 2;
     panel.setLocation(x, y);
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -209,6 +185,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
             }
         });
 
+        IniciarSesion.setBackground(new java.awt.Color(100, 102, 104));
         IniciarSesion.setText("Iniciar sesion");
         IniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

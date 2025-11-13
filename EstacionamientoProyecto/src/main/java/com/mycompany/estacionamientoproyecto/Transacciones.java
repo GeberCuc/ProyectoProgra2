@@ -4,9 +4,22 @@ package com.mycompany.estacionamientoproyecto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 
+
+
+
+
+
+
+/*
+  Se encarga de manejar todas las transacciones del sistema. 
+  Agrega la fecha cuando se realiza la primera transacción del día 
+  y sube las ganancias a la tabla "Actividad" en la base de datos.
+  
+  Además, calcula los cobros, valida pagos, muestra mensajes al usuario,
+  y mantiene el registro total de ganancias acumuladas.
+ */
 
 public class Transacciones {
 
@@ -31,6 +44,15 @@ public class Transacciones {
     public Transacciones() {
     }
   
+    
+    
+    
+    
+    
+      /* 
+      Método que suma el monto recibido al total de ganancias.
+      Se utiliza cada vez que se realiza una transacción exitosa.
+     */
   public void sumarGanancias(double monto){
       
      Total+=monto;
@@ -43,7 +65,11 @@ public class Transacciones {
 
   
   
-  
+  /*
+      Método encargado de generar una fecha actual.
+      Inserta la fecha del día en la tabla "Actividad" si aún no existe.
+      Conectado conexión activa con la base de datos.
+     */
   
   public void AgregarFecha(Connection Conectado){
       
@@ -64,6 +90,15 @@ public class Transacciones {
   }
   
   
+  
+   /*
+     Método encargado de subir las ganancias del día.
+     Actualiza la tabla "Actividad" sumando la ganancia del momento 
+      y aumentando el contador de spots utilizados.
+      
+     Conectado conexión a la base de datos.
+     Total monto total a agregar a las ganancias.
+     */
   public void GuardaGanancias(Connection Conectado,double Total){
       
      
@@ -85,9 +120,13 @@ public class Transacciones {
   
   
  
-  
-  
-  
+  /*
+      Despliega un JOptionPane si el pago no se completó correctamente.
+      En caso de éxito, retorna la tarifa (ganancia).
+      
+     Este método aplica una tarifa fija (Q10) y muestra el vuelto si aplica.
+     */
+ 
   public double planoCobro(Connection Conectado,double pago){
       
      double tarifa=10;
@@ -114,7 +153,17 @@ public class Transacciones {
   
   
   
-  
+  /*
+      Función encargada de realizar los cálculos necesarios para el cobro.
+   Determina la tarifa según el tiempo (minutos) transcurrido.
+      Pide el pago al usuario y valida si el monto ingresado es suficiente.
+      
+     Si el pago es correcto, se guarda la ganancia y se muestra el vuelto.
+      
+     Conectado conexión a la base de datos.
+     minutos tiempo total que el vehículo estuvo estacionado.
+     retorna true si el cobro fue exitoso, false si el pago fue insuficiente.
+     */
   public boolean cobrar(Connection Conectado,double minutos) {
         double tarifaHora = 10.0;
         double horas = minutos / 60.0;
@@ -143,7 +192,15 @@ public class Transacciones {
         return true;
     }
   
+ 
   
+  
+  
+  /*
+     Solicita el pago al usuario mediante un cuadro de diálogo
+      montoRequerido cantidad a pagar.
+     retorna le monto ingresado por el usuario (o 0 si no es válido).
+     */
  public double solicitarPago(double montoRequerido){
     String input=JOptionPane.showInputDialog(null, 
         String.format("Monto a pagar: Q%.2f\nIngrese el monto:", montoRequerido),"PAGO",JOptionPane.QUESTION_MESSAGE);

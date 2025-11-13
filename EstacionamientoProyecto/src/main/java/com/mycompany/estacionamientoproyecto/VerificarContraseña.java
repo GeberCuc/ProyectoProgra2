@@ -26,6 +26,19 @@ public class VerificarContraseña {
         this.contraseña = contraseña;
     }
     
+    /*
+Clase VerificarContraseña:
+Encargada del manejo del inicio de sesión en el sistema. 
+Verifica el usuario y contraseña ingresados, controla los intentos permitidos 
+y gestiona la interfaz gráfica según el resultado de la verificación.
+
+Atributos principales:
+ usuario y contraseña: datos ingresados por el usuario.
+ intentos: contador de intentos fallidos.
+ contra y us: credenciales válidas predefinidas.
+ Componentes gráficos (paneles, botones, etiquetas, etc.) utilizados para
+  mostrar mensajes, habilitar o deshabilitar campos y controlar el flujo visual.
+*/
     
     private String usuario;
     private char[] contraseña;
@@ -69,7 +82,14 @@ public class VerificarContraseña {
    }
    
     
-    
+    /*
+Método verificar():
+Compara las credenciales ingresadas con las almacenadas.
+Si el usuario y la contraseña coinciden, se muestra un mensaje de éxito 
+ y se activan los paneles del sistema principal.
+ Si son incorrectas, se resta un intento y se limpian los campos.
+ Si se agotan los intentos, se bloquea temporalmente el inicio de sesión.
+*/
     public  void verificar(){
         
         boolean pasas=Arrays.equals(contraseña, contra)&&usuario.equals(us);
@@ -103,24 +123,18 @@ public class VerificarContraseña {
           if(intentos==0){
               
               bloqueoIntentos(10000);
-              
-              
-          }
-          
-          
-          
-          
-          
-          
-          
+          }   
       }
-        
         }
-        
-      
     }
     
-    
+   
+    /*
+Método bloqueoIntentos(int tiempo):
+Bloquea temporalmente el acceso al sistema cuando se superan los intentos fallidos.
+Deshabilita los campos de entrada, muestra una barra de progreso con el tiempo
+de espera restante y reestablece los intentos una vez finalizado el bloqueo.
+*/
     public void bloqueoIntentos(int tiempo){
         
        JOptionPane.showMessageDialog(null, "intentos agotados, intentelo nuevamente un rato");
@@ -163,11 +177,7 @@ public class VerificarContraseña {
             
             tm.setInitialDelay(0);
             tm.start();
-            
-      
-        
-            
-            
+
             
         }
         

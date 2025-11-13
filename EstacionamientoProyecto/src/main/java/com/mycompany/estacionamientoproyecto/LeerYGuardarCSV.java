@@ -15,12 +15,35 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 
+
+/*
+ Clase LeerYGuardarCSV 
+  Esta clase se encarga de recibir un archivo CSV mediante un JFileChooser, 
+  leer su contenido línea por línea, limpiar y reorganizar los datos 
+  según el tipo de archivo seleccionado, y finalmente subir esa información 
+  a la base de datos. 
+  
+  Cumple el rol de intermediario entre la capa de entrada de datos (archivos CSV)
+  y la capa de persistencia (base de datos).
+ */
+
+
 public class LeerYGuardarCSV {
     
-    
+    /* 
+  Atributos principales:
+   ventana: instancia de JFileChooser para abrir el archivo CSV.
+   Direccioncsv: campo de texto donde se mostrará la ruta del archivo seleccionado.
+ */
      private  final JFileChooser ventana;
     private final JTextField Direccioncsv;
     
+  
+    /* 
+  Constructor:
+  Inicializa el JFileChooser y el JTextField donde se mostrará la ruta del archivo.
+  Permite posteriormente establecer la ruta del archivo seleccionado.
+ */
     
     public LeerYGuardarCSV(JFileChooser ventana,JTextField Direccioncsv){
       this.ventana=ventana;  
@@ -29,7 +52,13 @@ public class LeerYGuardarCSV {
     
     
    
-    
+   /* 
+  Método ObtenerDireccion(int tipo):
+  Abre una ventana para seleccionar un archivo CSV.
+  Si se elige un archivo válido, obtiene su ruta y la muestra en el JTextField.
+  Luego invoca el método LeerDatos() para procesar su contenido según el tipo de archivo.
+ */
+
     public void ObtenerDireccion(int tipo){
         
         
@@ -57,7 +86,14 @@ public class LeerYGuardarCSV {
     }
     
     
-    
+    /* 
+ Método LeerDatos(File CSV, int tipoArchivo):
+ Lee el archivo línea por línea usando un BufferedReader.
+  Omite la primera línea si está vacía o es un encabezado.
+  Divide cada línea por comas (",") y distribuye los datos según el tipo de archivo.
+  Dependiendo del tipo (0=Área, 1=Spot, 2=Vehículo, 3=Ticket), 
+  llama al método correspondiente para reorganizar y subir los datos a la base de datos.
+ */
     public void LeerDatos(File CSV,int tipoArchivo){
         
        
@@ -135,6 +171,12 @@ public class LeerYGuardarCSV {
     
     
     
+    /* 
+  Método Consulta():
+  Realiza una consulta SQL que compara las capacidades de las áreas A2 y A4.
+  Devuelve el ID del área con mayor capacidad, utilizado para asignar nuevos datos.
+ */
+    
     public String Consulta(){
      int a2=0;
     int a4=0;
@@ -175,7 +217,11 @@ public class LeerYGuardarCSV {
     }
     
     
-    
+     /* 
+  Método messirve(String area):
+  Convierte identificadores de áreas del archivo (como A01, A02, etc.)
+  en IDs válidos según las áreas existentes en la base de datos.
+ */
     public String messirve(String area){
         
         
@@ -193,6 +239,13 @@ public class LeerYGuardarCSV {
     }
     
     
+    
+  /* 
+  Método reorganizarDatos(String[] info):
+  Reorganiza y limpia los datos provenientes del archivo de tickets.
+  Aplica transformaciones a los campos (como modo o área) para hacerlos compatibles con la base de datos.
+  Devuelve un arreglo de Strings con la información lista para insertarse.
+ */
     public String [] reorganizarDatos(String [] info){
         
         
@@ -243,7 +296,11 @@ return Data;
     
     
     
-    
+    /* 
+  Método caambiooo(String vehiculo):
+  Normaliza los tipos de vehículo ("AUTO", "MOTO") a valores estándar ("automovil", "moto").
+ */
+
     public String caambiooo(String vehiculo){
     
         
@@ -260,6 +317,16 @@ return Data;
     return vehiculo;
 }
     
+    
+   
+    
+    
+    
+    /* 
+  Método areaCambio(String vehiculo):
+  Normaliza el tipo de usuario o categoría ("CATEDRATICOS", "ESTUDIANTES") 
+  a los valores compatibles con la base de datos.
+ */
     
     public String areaCambio(String vehiculo){
     
@@ -282,9 +349,13 @@ return Data;
     
     
     
-    
-         
-    
+    /* 
+  Método ReoraganizarVehiculo(String[] info):
+  Limpia y reorganiza los datos de vehículos obtenidos del CSV.
+  Utiliza funciones auxiliares para normalizar los tipos y áreas.
+  Devuelve un arreglo con los datos listos para subir.
+ */
+      
 public  String [] ReoraganizarVehiculo(String [] info){
     
     String [] VehiculoData= new String [3];
@@ -313,6 +384,13 @@ public  String [] ReoraganizarVehiculo(String [] info){
 
 
 
+/* 
+  Método UsuarioX(Connection Conectado):
+  Verifica si existe un usuario genérico en la base de datos.
+  Si no existe, lo crea y devuelve su ID.
+  Se utiliza para asociar vehículos a un usuario genérico.
+ */
+
 private int UsuarioX(Connection Conectado) throws SQLException {
     String select="SELECT UsuarioID FROM Usuario WHERE Nombre = 'GENERICO'";
     try(PreparedStatement ps=Conectado.prepareStatement(select);
@@ -336,6 +414,12 @@ private int UsuarioX(Connection Conectado) throws SQLException {
 
 
 
+
+/* 
+  Método subirVehiculo(String[] VehiculoData):
+  Inserta los datos del vehículo en la tabla correspondiente.
+  Asigna automáticamente el ID del usuario genérico si es necesario.
+ */
 private void subirVehiculo(String []VehiculoData){
     
     String sql = "INSERT INTO vehiculo (Placa, TipoVehiculo, Area, Usuarioid) VALUES (?, ?, ?, ?)";
@@ -363,7 +447,12 @@ private void subirVehiculo(String []VehiculoData){
     
 }
     
-    
+   /* 
+  Método reorganizarSpot(String[] info):
+  Limpia y adapta los datos de los espacios de estacionamiento (spots).
+  Normaliza los valores de estado (FREE, OCCUPIED, etc.) y tipos de vehículo.
+  Devuelve un arreglo con los datos listos para su inserción.
+ */
     
 public String [] reorganizarSpot(String [] info){
 
@@ -412,6 +501,15 @@ return datons;
 
 }
 
+
+
+
+
+/* 
+  Método subirSpot(String[] data):
+  Inserta los datos del spot en la base de datos y actualiza la capacidad del área asociada.
+  Utiliza transacciones para garantizar la integridad de los datos.
+ */
 public void subirSpot(String [] data){
     
     
@@ -453,6 +551,12 @@ public void subirSpot(String [] data){
 
 
 
+
+/* 
+  Método AreaReorganizr(String[] info):
+  Limpia los datos de áreas obtenidos del CSV.
+  Adapta el ID de área a los valores válidos de la base de datos.
+ */
 public String [] AreaReorganizr(String [] info){
     
     String [] data= new String[2];
@@ -486,6 +590,12 @@ public String [] AreaReorganizr(String [] info){
 
 
 
+
+/* 
+  Método SubirArea(String[] s):
+  Actualiza la capacidad de un área en la base de datos sumando los valores 
+  obtenidos del archivo.
+ */
 public void SubirArea(String []s){
     
     
@@ -510,18 +620,13 @@ public void SubirArea(String []s){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    
+/* 
+  Método SubirInformacion(Connection Conectado, String[] Data):
+  Inserta los registros en la tabla Ticket.
+  Verifica si el TicketID ya existe para evitar duplicados.
+  genera un nuevo ID mediante la clase UsuarioDB.
+  devuelve true si la inserción fue exitosa.
+ */
     
    public boolean SubirInformacion(Connection Conectado, String[] Data) {
     String verificar ="SELECT COUNT(*) FROM Ticket WHERE TicketID = ?";

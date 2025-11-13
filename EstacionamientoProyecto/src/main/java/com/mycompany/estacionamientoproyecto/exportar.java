@@ -16,7 +16,11 @@ import javax.swing.JTextField;
 public class exportar {
     
     
-    
+    /*
+Clase exportar:
+Se encarga de extraer la información almacenada en la base de datos y guardarla en un archivo externo.
+Facilita la generación de reportes o copias de respaldo de los registros de la tabla Ticket.
+*/
   
     
     
@@ -24,7 +28,14 @@ public class exportar {
     }
     
     
-    
+ /*
+Método ticket(String direccion):
+Exporta el contenido completo de la tabla Ticket a un archivo de texto o CSV.
+Recibe como parámetro la ruta o dirección del archivo donde se guardarán los datos.
+Abre la conexión con la base de datos, consulta todos los registros y escribe cada fila en el archivo.
+Incluye los encabezados de columna y separa los valores con comas.
+Muestra un mensaje de confirmación si la exportación fue exitosa o un mensaje de error en caso contrario.
+*/
     public void ticket(String direccion){
         
         String sql="SELECT * FROM Ticket";

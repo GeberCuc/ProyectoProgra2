@@ -31,7 +31,11 @@ private String placa;
 private String Tipo;
 private String puesto;
     
-
+/*Clase Vehiculo:
+Objeto de transferencia de datos que representa un vehículo dentro del sistema.
+Contiene únicamente los atributos necesarios (placa, tipo, puesto) para ser
+utilizado en operaciones de registro, búsqueda y asignación de espacios en la base de datos.
+*/
     public Vehiculo(String placa, String Tipo, String puesto) {
         this.placa = placa;
         this.Tipo = Tipo;

@@ -36,8 +36,12 @@ public class Usuario {
   private Vehiculo vehiculoUs;
  
     
-  
-
+  /*
+  Esta clase actúa como un DATA TRANSFER OBJECT (DTO).
+  Su única función es transportar los datos obtenidos desde la interfaz gráfica
+  hacia la clase UsuarioDB, que se encarga de subir la información a la base de datos.
+  No realiza procesos lógicos, solo sirve como contenedor temporal de datos.
+ */
    public Usuario(int UsuarioID,String nombre,long carnet, Vehiculo vehiculoUs){
        
        this.Nombre=nombre;
@@ -47,18 +51,6 @@ public class Usuario {
    }
    
    
-   
-   
- 
-   public String toString(){
-         
-       return  "Usuario { " +
-                "ID=" + UsuarioID +
-                ", nombre='" + Nombre + '\'' +
-                ", carnet=" + Carnet +
-                (vehiculoUs != null ? ", vehiculo=" + vehiculoUs.getPlaca() : "") +
-                " }";
-   }
 }
  
  

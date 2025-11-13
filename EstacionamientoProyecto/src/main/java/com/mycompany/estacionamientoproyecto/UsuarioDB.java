@@ -18,6 +18,18 @@ import javax.swing.table.DefaultTableModel;
 public class UsuarioDB {
     
     
+    
+    
+    
+    
+   /*
+AgregaDb(Usuario usuariodb, Vehiculo v):
+Se encarga de subir los datos obtenidos desde las clases DTO hacia la base de datos.
+Utiliza dos consultas SQL: la primera inserta los datos del usuario,
+luego obtiene el ID generado automáticamente, y finalmente realiza una segunda consulta
+para registrar los datos del vehículo asociado. 
+El proceso se maneja dentro de una transacción para garantizar la consistencia.
+*/
     public void AgregarDb(Usuario usuariodb,Vehiculo v){
         
         
@@ -74,6 +86,12 @@ public class UsuarioDB {
     }
     
     
+    /*
+area(String vehiculo, String idarea):
+Determina el área correspondiente según el tipo de vehículo
+(automóvil o moto) y el tipo de usuario (estudiante o catedrático).
+Devuelve el identificador del área asignada.
+*/
     
     
     
@@ -95,7 +113,14 @@ public class UsuarioDB {
     }
     
     
-    
+    /*
+AsignarSpot():
+Administra todo el proceso de asignación de espacios de estacionamiento (spots).
+Verifica si el vehículo ya tiene un ticket activo, si el área tiene capacidad,
+busca un spot disponible, actualiza su estado, y genera un nuevo ticket con la información.
+Si el modo de pago es “plano”, realiza el cobro inmediato. 
+Todos los cambios se manejan con transacciones SQL para evitar errores o duplicados.
+*/
    public boolean AsignarSpot(String Placa,String idarea,String modo,double monto,String vehiculo,double tiempo){
        
    String area=area(vehiculo, idarea);
@@ -243,7 +268,12 @@ try (PreparedStatement ps = Conectado.prepareStatement(VerificarExistencia)) {
    
    
    
-   
+  /* RegistrarSalida(String ticketid):
+Gestiona la salida de un vehículo según su ticket.
+Calcula la duración de la estancia, aplica el cobro según el modo de pago,
+libera el spot, y actualiza los datos del ticket con la fecha y el monto final.
+Incluye validaciones para el modo plano, modo variable y manejo del tiempo de espera.
+*/
    
     
    public boolean RegistrarSalida(String ticketid){
@@ -361,6 +391,14 @@ try (PreparedStatement ps = Conectado.prepareStatement(VerificarExistencia)) {
 }
 
    
+   /*
+ReingresoTicket(String ticketid):
+Permite el reingreso de un vehículo que salió temporalmente.
+Verifica si el ticket sigue dentro del tiempo permitido 2 horas
+y, de ser así, vuelve a marcar el spot como ocupado.
+Si el tiempo expira, solicita que el usuario complete el proceso de salida.
+*/
+   
    
    
    public boolean ReingresoTicket(String ticketid) {
@@ -422,6 +460,13 @@ try (PreparedStatement ps = Conectado.prepareStatement(VerificarExistencia)) {
     }
 }
    
+   
+   
+   /*
+spotEnEspera(Connection con, String spotId):
+Verifica si un espacio de estacionamiento se encuentra en modo “espera”.
+Devuelve true si el spot aún está reservado temporalmente, false si ya está libre.
+*/
    private boolean spotEnEspera(Connection con,String spotId)throws SQLException {
     String sql="SELECT Estado FROM Spots WHERE PosicionID=?";
     try (PreparedStatement ps=con.prepareStatement(sql)){
@@ -438,7 +483,12 @@ try (PreparedStatement ps = Conectado.prepareStatement(VerificarExistencia)) {
   
    
    
-//Liberar spot Y sumar +1 en Area
+   
+   
+  /* liberarSpotYActualizarArea(Connection Conectado,String spotID,String idArea):
+Libera el spot marcándolo como “libre” en la base de datos
+y aumenta en +1 la capacidad disponible del área correspondiente.
+*/
 private void liberarSpotYActualizarArea(Connection Conectado,String spotID,String idArea) throws SQLException{
     //  Liberaramos el spot
     String liberarSpotSQL="UPDATE Spots SET Estado = 'libre' WHERE PosicionID = ?";
@@ -455,7 +505,16 @@ private void liberarSpotYActualizarArea(Connection Conectado,String spotID,Strin
     }
 }
 
-//Modo espera
+
+
+
+
+/*
+iniciarModoEspera(String ticketID,String spotID,String idArea, Connection Conectad):
+Cambia el estado del spot a “espera” para reservarlo temporalmente.
+Inicia un temporizador de 2 horas (7200000 ms) al final del cual
+se verifica si el spot sigue sin uso; si es así, se libera automáticamente.
+*/
 private void iniciarModoEspera(String ticketID,String spotID,String idArea, Connection Conectado)throws SQLException{
     // Actualizar spot como espera
     String ActualizarSpot="UPDATE Spots SET Estado = 'espera' WHERE PosicionID = ?";
@@ -475,7 +534,15 @@ private void iniciarModoEspera(String ticketID,String spotID,String idArea, Conn
     }, 7200000L); 
 }
 
-// Verificar expiración
+
+
+
+
+/*
+verificarExpiracionEspera(String ticketID,String spotID,String idArea):
+Verifica si un spot en modo espera ha excedido el tiempo permitido.
+Si aún está en espera, lo libera y actualiza el área correspondiente.
+*/
 private void verificarExpiracionEspera(String ticketID,String spotID,String idArea) {
     Connection Conectado=null;
     try{
@@ -506,7 +573,12 @@ private void verificarExpiracionEspera(String ticketID,String spotID,String idAr
         basededatos.cerrar(Conectado);
     }
 }
-
+/*
+BuscarPorPlaca(String Buscado):
+Busca un vehículo en la base de datos por su número de placa.
+Si lo encuentra, devuelve un objeto Vehiculo con los datos obtenidos.
+En caso contrario, devuelve null y muestra un mensaje de error.
+*/
    
     
   public Vehiculo BuscarPorPlaca(String Buscado){
@@ -547,7 +619,11 @@ private void verificarExpiracionEspera(String ticketID,String spotID,String idAr
       }    
     
   
-  
+  /*
+GenerarTicket(Connection Conectado):
+Genera un nuevo identificador único de ticket (por ejemplo: “T-0001”, “T-0002”…).
+Toma el último ticket registrado, incrementa su número y devuelve el nuevo código.
+*/
 
   
     public String GenerarTicket(Connection Conectado)throws SQLException {
@@ -567,7 +643,11 @@ private void verificarExpiracionEspera(String ticketID,String spotID,String idAr
         
    
     
-    
+    /*
+datosEnTabla(JTable TablaParaVisualizar, String Consulta):
+Ejecuta una consulta SQL y muestra los resultados en una tabla de interfaz (JTable).
+Limpia los datos previos y añade las nuevas filas obtenidas del ResultSet.
+*/
     
     public void datosEnTabla(JTable TablaParaVisualizar,String Consulta){
         
@@ -612,6 +692,13 @@ private void verificarExpiracionEspera(String ticketID,String spotID,String idAr
         
     }
     
+    
+    
+    /*
+DatosDeldia():
+Recupera los datos del día actual: ganancias totales, spots utilizados y ocupación actual.
+Devuelve un resumen en formato de texto listo para mostrar en pantalla o consola.
+*/
     
     public String DatosDeldia() {
     double ganancias=0;
@@ -660,7 +747,12 @@ private void verificarExpiracionEspera(String ticketID,String spotID,String idAr
     }
 }
         
-        
+        /*
+buscarPorTicket(String Buscado, JTable T):
+Realiza una búsqueda de un ticket específico por su ID.
+Muestra la información completa del ticket en la tabla indicada.
+Si no se encuentra, notifica al usuario mediante un mensaje.
+*/
         
     public void buscarPorTicket(String Buscado, JTable T){
           
