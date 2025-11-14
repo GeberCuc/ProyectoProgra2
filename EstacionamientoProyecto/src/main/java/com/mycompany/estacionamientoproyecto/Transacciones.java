@@ -205,6 +205,11 @@ public class Transacciones {
     String input=JOptionPane.showInputDialog(null, 
         String.format("Monto a pagar: Q%.2f\nIngrese el monto:", montoRequerido),"PAGO",JOptionPane.QUESTION_MESSAGE);
     
+    
+    if(input==null) {
+       
+        return 0; 
+    }
     try{
         return Double.parseDouble(input);
     }catch (NumberFormatException e){

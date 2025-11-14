@@ -2,12 +2,14 @@
 package com.mycompany.estacionamientoproyecto;
 
 
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -78,7 +80,40 @@ Muestra un mensaje de confirmación si la exportación fue exitosa o un mensaje 
             
      
         
-        
+    public void reporteD() {
+
+    String sql = "SELECT *FROM Actividad WHERE Fecha=DATE('now','localtime')";
+
+    try (Connection conectado =basededatos.Conectar();PreparedStatement ps = conectado.prepareStatement(sql); ResultSet rs= ps.executeQuery()) {
+
+        String ruta =System.getProperty("user.home")+"/Desktop/ReporteActividadHoy.txt";
+        BufferedWriter writer=new BufferedWriter(new FileWriter(ruta));
+
+        writer.write("REPORTE DEL DÍA \n\n");
+
+        if(rs.next()){
+            writer.write("Fecha: " + rs.getString("Fecha") + "\n");
+            writer.write("Ganancia Total: Q" + rs.getDouble("GananciaTotal") + "\n");
+            writer.write("Spots Utilizados: " + rs.getInt("SpotsUtilizados") + "\n");
+
+        }else{
+            writer.write("No hay actividad registrada para hoy.\n");
+        }
+
+        writer.close();
+
+        JOptionPane.showMessageDialog(null,"Reporte del día generado en el escritorio:\nReporteActividadHoy.txt");
+
+    }catch(Exception e){
+        JOptionPane.showMessageDialog(null, "Error: "+ e.getMessage());
+    }
+}
+            
+            
+            
+            
+            
+        }
     
    
     
@@ -89,4 +124,4 @@ Muestra un mensaje de confirmación si la exportación fue exitosa o un mensaje 
     
     
     
-}
+

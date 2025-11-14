@@ -102,7 +102,7 @@ import javax.swing.JOptionPane;
 
             mapa.repaint();
 
-            System.out.println("Mapa → Ocupados: " + ocupados + ", Espera: " + espera + ", Libres: " + libres);
+           
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this,"Error al cargar estados: " + e.getMessage());

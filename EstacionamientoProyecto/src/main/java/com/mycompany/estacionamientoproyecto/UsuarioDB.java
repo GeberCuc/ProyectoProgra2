@@ -86,6 +86,75 @@ El proceso se maneja dentro de una transacción para garantizar la consistencia.
     }
     
     
+    public int buscado(JLabel mensaje, String nom) {
+    String bus= "SELECT UsuarioID FROM Usuario WHERE Nombre=?";
+    int id =0;
+    
+    try(Connection conectar=basededatos.Conectar();PreparedStatement ps =conectar.prepareStatement(bus)) {
+
+        ps.setString(1, nom);
+        ResultSet rs=ps.executeQuery();
+
+        if(rs.next()){
+            id=rs.getInt("UsuarioID");
+            mensaje.setText("USUARIO HALLADO, PROSIGA");
+        } else{
+            mensaje.setText("USUARIO NO HALLADO");
+        }
+    }catch(SQLException e){
+        mensaje.setText("ERROR AL BUSCAR USUARIO: " + e.getMessage());
+    }
+    
+    return id;
+}
+        
+   
+    
+    public void AutoExtra(int id,String placa,String tipo,String Area){
+        
+   
+        String insert="INSERT INTO Vehiculo(Placa,TipoVehiculo,Area,Usuarioid) VALUES(?,?,?,?)";
+        
+ 
+        try(Connection conectar=basededatos.Conectar();PreparedStatement ps=conectar.prepareStatement(insert)){
+          
+            
+        
+           
+                ps.setString(1, placa);
+                ps.setString(2, tipo);
+                ps.setString(3, Area);
+                ps.setInt(4, id);
+                ps.executeUpdate();
+         
+                
+        }catch(SQLException e){
+            
+              System.out.println("ACA NO PASO NADA");
+  
+            
+        }
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /*
 area(String vehiculo, String idarea):
 Determina el área correspondiente según el tipo de vehículo
