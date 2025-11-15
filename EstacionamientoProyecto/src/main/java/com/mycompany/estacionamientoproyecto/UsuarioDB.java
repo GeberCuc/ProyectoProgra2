@@ -1,6 +1,8 @@
 
 package com.mycompany.estacionamientoproyecto;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -870,9 +872,57 @@ Si no se encuentra, notifica al usuario mediante un mensaje.
       }   
   
     
-    
-    
-    
-    
-    
+ public void VerUSyV(JTable tabla) {
+    String sql = "SELECT u.UsuarioID,u.Nombre, u.Carnet, v.Placa, v.TipoVehiculo, v.Area "+"FROM Usuario u LEFT JOIN vehiculo v ON u.UsuarioID=v.Usuarioid";
+
+    try (Connection conectado = basededatos.Conectar();
+         PreparedStatement ps = conectado.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        modelo.setRowCount(0); 
+
+        while (rs.next()) {
+            Object[] fila = {
+                rs.getString("UsuarioID"),
+                rs.getString("Nombre"),
+                rs.getString("Carnet"),
+                rs.getString("Placa"),
+                rs.getString("TipoVehiculo"),
+                rs.getString("Area")
+            };
+            modelo.addRow(fila);
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null,"Error en la búsqueda: " + e.getMessage(),"ERROR", JOptionPane.ERROR_MESSAGE);
+    }
 }
+        
+        
+ 
+ 
+ public void copiar(JTable TablaParaVisualizar){
+     
+     
+     
+     
+      int fila=TablaParaVisualizar.getSelectedRow();
+    int columna= TablaParaVisualizar.getSelectedColumn();
+
+    if(fila !=-1&&columna !=-1){
+        Object valor=TablaParaVisualizar.getValueAt(fila, columna);
+        StringSelection seleccion = new StringSelection(valor.toString());
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(seleccion,null);
+        JOptionPane.showMessageDialog(null,"Celda copiada: " + valor);
+    }else{
+        JOptionPane.showMessageDialog(null,"Seleccione una celda antes de copiar.");
+    }
+
+ }
+ 
+ 
+    }
+    
+    
+

@@ -27,7 +27,7 @@ public class colores{
                 aplicarTemaAComponentes(panel);
             }
 
-            // J TABBED PANE 
+            // J TABBED PANE ne
             else if (comp instanceof JTabbedPane tabs) {
 
                 tabs.setBackground(PANEL_SECUNDARIO);

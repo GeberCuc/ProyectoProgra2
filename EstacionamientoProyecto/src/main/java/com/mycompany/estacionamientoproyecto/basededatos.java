@@ -5,9 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-
-
-
 /*
 Clase basededatos:
 Encargada de administrar la conexión con la base de datos SQLite utilizada por el sistema.
@@ -22,9 +19,6 @@ Contiene el nombre del archivo y su ubicación dentro del proyecto.
 */
       private final static String Direccion="jdbc:sqlite:Data/BaseDeDatosEstacionamientoProyecto.db";
     
-      
-      
-      
       
 /*
 Método Conectar():

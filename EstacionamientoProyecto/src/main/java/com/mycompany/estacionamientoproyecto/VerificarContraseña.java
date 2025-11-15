@@ -132,7 +132,7 @@ Si el usuario y la contraseña coinciden, se muestra un mensaje de éxito
             
             PanelIngresarDatos.setVisible(true);
             
-            JpanelAñadirUsuario.setVisible(true); 
+            JpanelAñadirUsuario.setVisible(false); 
             pestañas.setVisible(true);
             pestañas.setEnabledAt(4, true);
 

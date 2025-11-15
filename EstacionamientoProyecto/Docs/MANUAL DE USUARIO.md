@@ -4,8 +4,12 @@
 ### 1. Inicio y Login
 1. Ejecuta la aplicación.  
 2. En la ventana de login introduce:  
+   - Empleado:
    - Usuario: `geber12`  
    - Contraseña: `gebr2|`  
+   - Admin:
+   - Usuario: `ADMIN12`  
+   - Contraseña: `geber2|`  
 3. Si fallan los intentos, el sistema bloquea temporalmente y muestra barra de progreso.  
 ![Ventana de Login](imagenes/login.png)  
 *Figura 1: Pantalla de inicio de sesión del sistema*
