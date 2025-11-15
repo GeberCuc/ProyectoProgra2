@@ -6,23 +6,23 @@
 
 ---
 
-## README
+# README
 
 ### 1. Resumen
-Este proyecto es una aplicación de escritorio en **Java (Swing + JDBC + SQLite)** que simula la gestión de un estacionamiento universitario. Permite registrar usuarios y vehículos, asignar spots, generar y cerrar tickets, visualizar un mapa de ocupación y exportar/importar datos en CSV.
+Aplicación de escritorio desarrollada en **Java (Swing + JDBC + SQLite)** para gestionar un estacionamiento universitario. Permite registrar usuarios y vehículos, asignar espacios, generar y cerrar tickets, visualizar un mapa de ocupación y manejar importación/exportación de datos en formato CSV.
 
 ### 2. Objetivos
-- Aplicar POO, JDBC y manejo de interfaces Swing.
-- Mantener persistencia con SQLite.
-- Proporcionar funciones de importación y exportación para datos masivos.
-- Guardar y reportar ganancias diarias.
+- Aplicar principios de POO, JDBC y diseño de interfaces Swing.
+- Mantener persistencia de datos mediante SQLite.
+- Soportar importación y exportación masiva de datos vía CSV.
+- Registrar y reportar las ganancias diarias del estacionamiento.
 
 ### 3. Tecnologías
-- Java SE (versión compatible 8+)
-- Swing (Interfaz gráfica)
-- SQLite (archivo `.db`)
-- JDBC (driver sqlite)
-- Herramientas recomendadas: NetBeans o IntelliJ IDEA
+- Java SE 8 o superior
+- Swing para interfaz gráfica
+- SQLite para base de datos (archivo `.db`)
+- JDBC para conexión con SQLite
+- Recomendado usar IDEs como NetBeans o IntelliJ IDEA
 
 ### 4. Estructura de carpetas
 EstacionamientoProyecto/
@@ -46,19 +46,28 @@ EstacionamientoProyecto/
 └─ README.md
 
 ### 5. Requisitos
-- JDK 8+ instalado.
-- SQLite JDBC (normalmente ya incluido en proyecto si está en librerías).
-- NetBeans/IntelliJ para abrir el proyecto (o compilar con `javac`).
+- JDK 8 o superior instalado en el sistema.
+- Driver JDBC para SQLite (normalmente incluido en el proyecto).
+- IDE recomendado: NetBeans o IntelliJ IDEA (aunque se puede compilar por línea de comandos).
 
 ### 6. Cómo ejecutar
-1. Abrir el proyecto en NetBeans/IntelliJ.
-2. Asegurarse de que `Data/BaseDeDatosEstacionamientoProyecto.db` esté en la ruta esperada.
-3. Ejecutar la clase principal `visualizarContenido` (o `EstacionamientoProyecto` si configuras `main` ahí).
-4. Usuario por defecto en el código: `geber12` / contraseña: `gebr2|` (ver `VerificarContraseña`).
+1. Abrir el proyecto en el IDE (NetBeans/IntelliJ).
+2. Confirmar que el archivo `Data/BaseDeDatosEstacionamientoProyecto.db` se encuentra en la ruta correcta.
+3. Ejecutar la clase principal `visualizarContenido` o `EstacionamientoProyecto` (según configuración).
+4. Usuario y contraseña por defecto para login:  
+   - Empleado:
+   - Usuario: `geber12`  
+   - Contraseña: `gebr2|`
+   - Admin:
+   - Usuario: `ADMIN12`  
+   - Contraseña: `geber2|`  
+   *(Ver clase `VerificarContraseña` para detalles)*
 
-### 7. Notas rápidas
-- El sistema usa transacciones en operaciones críticas (asignación de spot, creación de ticket).
-- Importar CSV: usa `LeerYGuardarCSV` que transforma filas y llama a `UsuarioDB` o métodos de inserción.
-- Exportar tickets: usa `exportar.ticket(direccion)` para escribir CSV.
+### 7. Notas adicionales
+- Se usan transacciones para asegurar la integridad en operaciones como asignar spots y generar tickets.
+- La importación de CSV se realiza con la clase `LeerYGuardarCSV`, que transforma y valida datos antes de insertarlos.
+- La exportación de tickets a CSV usa el método `exportar.ticket(direccion)`.
 
-## Fin
+---
+
+**Fin del documento**

@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package com.mycompany.estacionamientoproyecto;
 
-import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;
@@ -17,18 +14,14 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author dxnie
- */
+
 public class visualizarContenido extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(visualizarContenido.class.getName());
-
-    /**
-     * Creates new form visualizarContenido
-     */
+ private Modificar mod;
+   
     public visualizarContenido() {
         initComponents();
         
@@ -39,7 +32,9 @@ colores.aplicarTema(this);
 
  Image icono = new ImageIcon(getClass().getResource("/Imagenes/iconoES.png")).getImage();
 
- 
+DefaultTableModel model = (DefaultTableModel) tablaDatos.getModel();
+
+        mod = new Modificar(model);
        
         setIconImage(icono);
         //ocultar
@@ -187,6 +182,14 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         Direccioncsv = new javax.swing.JTextField();
         Seleccionar = new javax.swing.JButton();
         EleccionSubirDatos = new javax.swing.JComboBox<>();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        Buscador = new javax.swing.JTextField();
+        Busc = new javax.swing.JButton();
+        Guardar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaDatos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -793,7 +796,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                     .addGroup(PanelFuncionesLayout.createSequentialGroup()
                         .addGap(240, 240, 240)
                         .addComponent(VehiculoN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(393, Short.MAX_VALUE))
+                .addContainerGap(469, Short.MAX_VALUE))
         );
         PanelFuncionesLayout.setVerticalGroup(
             PanelFuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -814,7 +817,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                         .addComponent(PanelREINGRESO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(VehiculoN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
 
         pestañas.addTab("Ingreso", PanelFunciones);
@@ -860,14 +863,14 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
             .addGroup(JpaneSalidaLayout.createSequentialGroup()
                 .addGap(141, 141, 141)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(333, Short.MAX_VALUE))
+                .addContainerGap(409, Short.MAX_VALUE))
         );
         JpaneSalidaLayout.setVerticalGroup(
             JpaneSalidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpaneSalidaLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(702, Short.MAX_VALUE))
+                .addContainerGap(752, Short.MAX_VALUE))
         );
 
         pestañas.addTab("Salida", JpaneSalida);
@@ -1012,14 +1015,14 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(320, Short.MAX_VALUE))
+                .addContainerGap(396, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(530, Short.MAX_VALUE))
+                .addContainerGap(580, Short.MAX_VALUE))
         );
 
         pestañas.addTab("Ver", jPanel3);
@@ -1069,17 +1072,98 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(335, Short.MAX_VALUE))
+                .addContainerGap(411, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(663, Short.MAX_VALUE))
+                .addContainerGap(713, Short.MAX_VALUE))
         );
 
         pestañas.addTab("Cargar", jPanel5);
+
+        jLabel3.setText("Datos:");
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        Busc.setText("Buscar");
+        Busc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscActionPerformed(evt);
+            }
+        });
+
+        Guardar.setText("Actualizar");
+        Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarActionPerformed(evt);
+            }
+        });
+
+        tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Carnet", "Placa", "Vehiculo", "Area"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaDatos);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(140, 140, 140)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Busc)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Guardar)))
+                .addContainerGap(358, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(80, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Busc)
+                    .addComponent(Guardar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(319, 319, 319))
+        );
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(310, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(549, Short.MAX_VALUE))
+        );
+
+        pestañas.addTab("Modificar", jPanel7);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1100,7 +1184,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
                 .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pestañas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -1121,7 +1205,7 @@ addComponentListener(new java.awt.event.ComponentAdapter() {
         char[] contraseña=ContraIngresada.getPassword();
        
         VerificarContraseña VC=new VerificarContraseña(Usuario,contraseña,PanelFunciones, PanelLogin, UsuarioIngresado, ContraIngresada, IniciarSesion, 
-                TxtEspera, BarraTiempo,ButtGrupoLogin,JpanelAñadirUsuario,pestañas);
+                TxtEspera, BarraTiempo,ButtGrupoLogin,JpanelAñadirUsuario,pestañas,SelectEmpleado,SelecAdmin);
        
       
         VC.verificar();
@@ -1676,6 +1760,20 @@ VehiculoN.setVisible(false);
          ex.reporteD();
     }//GEN-LAST:event_HOYActionPerformed
 
+    private void BuscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscActionPerformed
+      
+       String nom= Buscador.getText();
+        
+      
+        mod.cargarDatosUsuarioVehiculos(nom);
+        
+    }//GEN-LAST:event_BuscActionPerformed
+
+    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+        
+        mod.guardarCambios();
+    }//GEN-LAST:event_GuardarActionPerformed
+
     
     
     
@@ -1718,6 +1816,8 @@ VehiculoN.setVisible(false);
     private javax.swing.JButton AutoN;
     private javax.swing.JProgressBar BarraTiempo;
     private javax.swing.JTextField BilleteIngresado;
+    private javax.swing.JButton Busc;
+    private javax.swing.JTextField Buscador;
     private javax.swing.JButton BuscarDbPlaca;
     private javax.swing.JButton BuscarTIckeID;
     private javax.swing.JRadioButton ButAuto;
@@ -1738,6 +1838,7 @@ VehiculoN.setVisible(false);
     private javax.swing.JComboBox<String> EleccionSubirDatos;
     private javax.swing.JButton Exportar;
     private javax.swing.ButtonGroup FormatoTiempo;
+    private javax.swing.JButton Guardar;
     private javax.swing.JButton HOY;
     private javax.swing.JTextField IngresarCarnet;
     private javax.swing.JTextField IngresarNombre;
@@ -1790,19 +1891,24 @@ VehiculoN.setVisible(false);
     private javax.swing.JTextField ingresaPlaca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel loginContra;
     private javax.swing.JLabel mensaje;
     private javax.swing.JRadioButton motoautoingresado;
     private javax.swing.JTextField nom;
     private javax.swing.JTabbedPane pestañas;
     private javax.swing.JTextField placa2;
+    private javax.swing.JTable tablaDatos;
     private javax.swing.JLabel txtpago;
     private javax.swing.JComboBox<String> verT;
     // End of variables declaration//GEN-END:variables

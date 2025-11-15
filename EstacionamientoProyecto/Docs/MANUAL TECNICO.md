@@ -44,6 +44,27 @@ Aplicación desktop en Java, arquitectura en capas:
   - Uso repetido de `setAutoCommit(false)` y `commit()`; asegura atomicidad.
   - Si hay excepciones, hace `rollback()`.
   - Obtención de `GeneratedKeys` importante para FK.
+  
+  
+  #### `Modificar`
+
+- **Responsabilidad:**  
+  Gestionar la carga y actualización de usuarios y sus vehículos en la base de datos mediante un `DefaultTableModel`.
+- **Atributos:**  
+  - `model`: Modelo de tabla para mostrar y editar datos.  
+  - `usuarioID`: ID del usuario actualmente cargado.
+- **Constructor:**  
+  - `Modificar(DefaultTableModel model)`
+- **Métodos principales:**  
+  - `cargarDatosUsuarioVehiculos(String nombre)`:  
+    Busca usuario por nombre y carga sus vehículos en la tabla.  
+  - `guardarCambios()`:  
+    Guarda los cambios realizados en la tabla a la base de datos, con validaciones y manejo de transacciones.
+- **Uso:**  
+  Se instancia con el modelo de tabla, se carga el usuario y vehículos, el usuario edita, y luego se guardan los cambios.
+- **Notas:**  
+  Permite editar datos relacionados en una tabla de forma sencilla y mantiene integridad con validaciones.
+
 
 #### `Transacciones`
 - **Responsabilidades:**

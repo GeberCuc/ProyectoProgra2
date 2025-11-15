@@ -47,12 +47,14 @@ Atributos principales:
     
    protected final char[] contra={'g','e','b','r','2','|'};
    protected final String us="geber12";
+   
+   
+   
+   protected final char[] contraAdmin={'g','e','b','e','r','2','|'};
+   protected final String usAdmin="ADMIN12";
+   
    boolean verificarPaso=true;
-   
-   
-   
-   
-   
+
    private final  JPanel PanelIngresarDatos;
    private final JPanel PanelLogin;
    private final JTextField UsuarioIngresado;
@@ -63,8 +65,12 @@ Atributos principales:
    private final ButtonGroup ButtGrupoLogin;
    private final JPanel JpanelAñadirUsuario;
    private final JTabbedPane pestañas;
+   private final JRadioButton empleado;
+   private final JRadioButton admin;
+   
    public VerificarContraseña(String usuario, char[]contraseña, JPanel PanelIngresarDatos,JPanel PanelLogin,JTextField UsuarioIngresado,JPasswordField ContraIngresada,
-           JButton IniciarSesion,JLabel TxtEspera,JProgressBar BarraTiempo,ButtonGroup ButtGrupoLogin,JPanel JpanelAñadirUsuario,JTabbedPane pestañas){
+           JButton IniciarSesion,JLabel TxtEspera,JProgressBar BarraTiempo,ButtonGroup ButtGrupoLogin,JPanel JpanelAñadirUsuario,JTabbedPane pestañas
+             ,JRadioButton empleado,JRadioButton admin){
        
        
        this.usuario=usuario;
@@ -79,6 +85,9 @@ Atributos principales:
          this.ButtGrupoLogin=ButtGrupoLogin;
          this.JpanelAñadirUsuario=JpanelAñadirUsuario;
          this.pestañas=pestañas;
+         this.empleado=empleado;
+         this.admin=admin;
+         
    }
    
     
@@ -91,42 +100,72 @@ Si el usuario y la contraseña coinciden, se muestra un mensaje de éxito
  Si se agotan los intentos, se bloquea temporalmente el inicio de sesión.
 */
     public  void verificar(){
-        
-        boolean pasas=Arrays.equals(contraseña, contra)&&usuario.equals(us);
-        
-     
-        
-        if(ButtGrupoLogin.isSelected(null)){
+
+  boolean pasasAdmin=false;
+   boolean pasas=false;
+
             
-            JOptionPane.showMessageDialog(null,"Seleccione una opcion entre Empleado o Administrador","ERROR",JOptionPane.INFORMATION_MESSAGE);
+           
+           
+   if(empleado.isSelected()){
+                 
+         pasas=Arrays.equals(contraseña, contra)&&usuario.equals(us);
+   }else if(admin.isSelected()){
+       
+             pasasAdmin=Arrays.equals(contraseña, contraAdmin)&&usuario.equals(usAdmin);
+           
+   }
+        
+    
+        
+        if (ButtGrupoLogin.isSelected(null)){
+        JOptionPane.showMessageDialog(null,"Seleccione una opcion entre Empleado o Administrador","ERROR",JOptionPane.INFORMATION_MESSAGE);
+
+    }else{
+        if (pasasAdmin){
+        
+            
+            
+            JOptionPane.showMessageDialog(null, "Bienvenido Administrador", "INICIO DE SESION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+            Arrays.fill(contraseña,'°');
+            PanelLogin.setVisible(false);
+            
+            PanelIngresarDatos.setVisible(true);
+            
+            JpanelAñadirUsuario.setVisible(true); 
+            pestañas.setVisible(true);
+            pestañas.setEnabledAt(4, true);
+
+        }else if(pasas){
            
             
+            
+            JOptionPane.showMessageDialog(null,"Bienvenido Empleado","INICIO DE SESION EXITOSA",JOptionPane.INFORMATION_MESSAGE);
+            Arrays.fill(contraseña,'°');
+            PanelLogin.setVisible(false);
+            
+            PanelIngresarDatos.setVisible(true);
+            JpanelAñadirUsuario.setVisible(false);
+            
+            pestañas.setVisible(true);
+            pestañas.setEnabledAt(4, false);
         }else{
-      if(pasas){
-          
-          JOptionPane.showMessageDialog(null,"             Bienvenido  ","INICIO DE SESION EXITOSA",JOptionPane.INFORMATION_MESSAGE);
-          Arrays.fill(contraseña, '°');
-          PanelLogin.setVisible(false);
-          PanelIngresarDatos.setVisible(true);
-          JpanelAñadirUsuario.setVisible(false);
-        pestañas.setVisible(true);
-      }
-        
-      if(!pasas){
-          intentos--;
-          Arrays.fill(contraseña, '°');
-          JOptionPane.showMessageDialog(null,"Contraseña o Usuario incorrecto, intentos restastes: "+intentos);
+            intentos--;
+            Arrays.fill(contraseña,'°');
+            JOptionPane.showMessageDialog(null,"Contraseña o Usuario incorrecto,intentos restantes: " + intentos);
             ButtGrupoLogin.clearSelection();
-          UsuarioIngresado.setText("");
-          ContraIngresada.setText("");
-          
-          if(intentos==0){
-              
-              bloqueoIntentos(10000);
-          }   
-      }
+            
+            UsuarioIngresado.setText("");
+            
+            ContraIngresada.setText("");
+
+            if (intentos == 0) {
+                bloqueoIntentos(10000);
+            }
         }
     }
+}
+   
     
    
     /*
@@ -137,7 +176,7 @@ de espera restante y reestablece los intentos una vez finalizado el bloqueo.
 */
     public void bloqueoIntentos(int tiempo){
         
-       JOptionPane.showMessageDialog(null, "intentos agotados, intentelo nuevamente un rato");
+       JOptionPane.showMessageDialog(null,"intentos agotados, intentelo nuevamente un rato");
         SwingUtilities.invokeLater(()->{
         
         UsuarioIngresado.setEnabled(false);
